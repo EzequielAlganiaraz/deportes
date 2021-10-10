@@ -55,3 +55,32 @@ nav a:hover{
     -webkit-box-shadow: 0px 18px 23px -12px rgba(158,245,32,0.39);
     -moz-box-shadow: 0px 18px 23px -12px rgba(158,245,32,0.39);
 }
+
+.container-categoria{
+    margin: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card-container{
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    background-color: #222222;
+    align-items: center;
+    margin-bottom: 1em;
+    padding:1em;
+    color: #c9c9c9;
+    border: 1px solid #9ef520 ;
+}
+
+.card-container a{
+    text-decoration: none;
+    border: 2px solid #111111;
+    padding: 1em;
+    background-color: #9ef520;
+    color: #111111;
+    font-weight: bolder;
+}
