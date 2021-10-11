@@ -2,6 +2,7 @@
 require_once "controller/InvitadoController.php";
 require_once "controller/CategoriasController.php";
 require_once "controller/JugadoresController.php";
+require_once "controller/UsuarioController.php";
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 define("URL_TAREAS", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/tareas');
@@ -25,6 +26,9 @@ if($action == ''){
             $categoriasController->getCategorias();
         }elseif($partesURL[0] == "jugadoresCategoria") {
             $jugadoresController->getJugadoresCategoria($partesURL[1]);
+        }elseif($partesURL[0] == "login") {
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->showLogin();
         }
 
 

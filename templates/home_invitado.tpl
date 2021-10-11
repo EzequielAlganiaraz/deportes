@@ -7,7 +7,7 @@
        </div>
        <div class="seleccion">
             <a href="jugadores">
-                <h1>jugadores</h1>  
+                <h1>Jugadores</h1>  
             </a>
        </div>
     </div>
