@@ -1,21 +1,28 @@
 body{
     margin: 0;
     background: #111111;
+    font-family: 'Roboto Mono', monospace;
 }
 
 
 nav{
     background-color: #1b1b1b;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 nav a{
-    padding: 0.8em;
+    padding: 1em;
     text-decoration: none;
     border: 1px solid #9ef520;
     color: rgb(172 245 37);
     margin: .5em;
+    margin-right: 2em;
+}
+nav h1{
+    margin-left: 2em;
+    font-size: 1.6em;
+    color: #9ef520;
 }
 
 nav a:hover{
@@ -84,3 +91,38 @@ nav a:hover{
     color: #111111;
     font-weight: bolder;
 }
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20em;
+    height: 11em;
+    padding: 1em;
+    background-color:#1b1b1b;
+    border: 1px solid #8df520;
+}
+
+
+
+.submit:hover {
+    background-color: #8df520;
+    color: #111111;
+}
+
+.form-login input {
+    background-color: #444444;
+    height: 3em;
+    margin-bottom: 2em;
+}
+
+.submit{
+    background-color: #111111;
+    border: 1px solid #8df520;
+    color: #8df520;
+}
+
+.form-login label {
+    color: #9ef520;
+}
+
