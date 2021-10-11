@@ -15,7 +15,7 @@ class CategoriasController {
 
     function getCategorias(){
         $categorias = $this->model->getCategorias();
-        $this->view->showCategorias($categorias);
+        $this->view->ShowCategorias($categorias);
     }
 
 }
