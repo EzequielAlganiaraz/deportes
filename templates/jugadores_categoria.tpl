@@ -7,7 +7,7 @@
                 <h3>Edad: {$jugador->edad}</h3>
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
-                <h3>Categoria: {$jugador->nombre_deporte}</h3>
+                <h3>Categoria: {$jugador->nombre}</h3>
             </div>
 
         {/foreach}
