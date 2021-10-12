@@ -5,7 +5,7 @@ require_once "controller/JugadoresController.php";
 require_once "controller/UsuarioController.php";
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-define("URL_TAREAS", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/tareas');
+
 
 
 $action = $_GET["action"];
@@ -23,12 +23,30 @@ if($action == ''){
         $partesURL = explode("/", $action);
 
         if($partesURL[0] == "categorias"){
-            $categoriasController->getCategorias();
+            $categoriasController->showCategorias();
         }elseif($partesURL[0] == "jugadoresCategoria") {
             $jugadoresController->getJugadoresCategoria($partesURL[1]);
         }elseif($partesURL[0] == "login") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->showLogin();
+        }elseif($partesURL[0] == "iniciarSesion") {
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->doLogin();
+        }elseif($partesURL[0] == "jugadoresAbm") {
+            $categorias = $categoriasController->getCategorias();
+            $jugadoresController->getJugadoresAbm($categorias);
+        }elseif($partesURL[0] == "borrarJugador") {
+            $jugadoresController->deleteJugador($partesURL[1]);
+        }elseif($partesURL[0] == "agregarJugador") {
+            $jugadoresController->insertJugador();
+        }elseif($partesURL[0] == "actualizarJugador") {
+            $categorias = $categoriasController->getCategorias();
+            $jugadoresController->getJugadorById($partesURL[1],$categorias);
+        }elseif($partesURL[0] == "updateJugador") {
+            $jugadoresController->updateJugador($partesURL[1]);
+        }elseif($partesURL[0] == "logout") {
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->logout();
         }
 
 
