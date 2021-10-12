@@ -26,6 +26,8 @@ if($action == ''){
             $categoriasController->showCategorias();
         }elseif($partesURL[0] == "jugadoresCategoria") {
             $jugadoresController->getJugadoresCategoria($partesURL[1]);
+        }elseif($partesURL[0] == "jugadores") {
+            $jugadoresController->getAllJugadores();
         }elseif($partesURL[0] == "login") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->showLogin();

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2021 a las 02:37:55
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Tiempo de generación: 12-10-2021 a las 21:23:00
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,20 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_deportes`
 --
-CREATE DATABASE IF NOT EXISTS `db_deportes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `db_deportes`;
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `db_categoria`
+-- Estructura de tabla para la tabla `dp_categoria`
 --
 
 CREATE TABLE `dp_categoria` (
   `id_categoria` int(11) NOT NULL,
-  `nombre_deporte` varchar(30) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
-  `tipo_competencia` varchar(60) NOT NULL
+  `tipo_competencia` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `dp_categoria`
+--
+
+INSERT INTO `dp_categoria` (`id_categoria`, `nombre`, `descripcion`, `tipo_competencia`) VALUES
+(1, 'Basket', 'Deporte en el que juegan 5 vs 5, con el objetivo de convertir la mayor cantidad de puntos en el arco contrario', 'Grupal'),
+(2, 'Tennis', 'Deporte de 1 vs 1 o 2 vs 2, se puede jugar en cancha de cesped, cemento o ladrillo', 'Mixta'),
+(3, 'Futbol', 'Se juegan 11 vs 11, el objetivo es convertir la mayor cantidad de goles al arco contrario', 'Grupal');
 
 -- --------------------------------------------------------
 
@@ -50,12 +58,31 @@ CREATE TABLE `dp_jugador` (
   `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dp_usuario`
+--
+
+CREATE TABLE `dp_usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `username` varchar(11) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `dp_usuario`
+--
+
+INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`) VALUES
+(1, 'ezequiel', 'bac527f21be5d2591c6e2f3cf51c98fb');
+
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `db_categoria`
+-- Indices de la tabla `dp_categoria`
 --
 ALTER TABLE `dp_categoria`
   ADD PRIMARY KEY (`id_categoria`);
@@ -68,30 +95,42 @@ ALTER TABLE `dp_jugador`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
+-- Indices de la tabla `dp_usuario`
+--
+ALTER TABLE `dp_usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `db_categoria`
+-- AUTO_INCREMENT de la tabla `dp_categoria`
 --
 ALTER TABLE `dp_categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `dp_jugador`
 --
 ALTER TABLE `dp_jugador`
-  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `dp_usuario`
+--
+ALTER TABLE `dp_usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `db_categoria`
+-- Filtros para la tabla `dp_jugador`
 --
-ALTER TABLE `dp_categoria`
-  ADD CONSTRAINT `dp_categoria_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `dp_jugador` (`id_categoria`);
+ALTER TABLE `dp_jugador`
+  ADD CONSTRAINT `dp_jugador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `dp_categoria` (`id_categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
