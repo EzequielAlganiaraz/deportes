@@ -17,7 +17,22 @@ class CategoriasModel{
 
         return $categorias;
     }
+    public function deleteCategoria($id){
+        $sql= $this->db->prepare('DELETE FROM dp_categoria WHERE id_categoria=?');
+        $sql->execute([$id]);
+    }
+    public function insertCategoria($nombreDeporte,$descripcion,$tipo_competencia){
+        $sql = $this->db->prepare('INSERT INTO dp_jugador(nombre, descripcion, tipo_competencia) VALUES (?, ?, ?,?,?)');
+        $sql->execute([$nombreDeporte,$descripcion,$tipo_competencia]);
 
+        return $this->db->lastInsertId();
+
+    }
+    public function updateCategoria($nombreDeporte,$descripcion,$tipo_competencia, $id){
+        $sql = $this->db->prepare('UPDATE dp_categoria SET nombre = ?,descripcion = ?, tipo_competencia = ? WHERE id_categoria = ?');
+        $sql->execute([$nombreDeporte,$descripcion,$tipo_competencia, $id]);
+
+    }
 }
 
 

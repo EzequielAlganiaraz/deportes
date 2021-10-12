@@ -11,9 +11,9 @@ class JugadoresModel{
 
 
     public function getJugadoresByCategoria($id_categoria){
-        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
                                    FROM dp_jugador 
-                                   INNER JOIN dp_categoria AS cat ON (dp_jugador.id_categoria = cat.id_categoria) 
+                                   INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria) 
                                    WHERE dp_jugador.id_categoria = ?");
         $sql->execute([$id_categoria]);
         $jugadores = $sql->fetchAll(PDO::FETCH_OBJ);
@@ -22,9 +22,9 @@ class JugadoresModel{
     }
 
     public function getJugadores(){
-        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
                                    FROM dp_jugador 
-                                   INNER JOIN dp_categoria AS cat ON (dp_jugador.id_categoria = cat.id_categoria)");
+                                   INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria)");
         $sql->execute();
         $jugadores = $sql->fetchAll(PDO::FETCH_OBJ);
 
