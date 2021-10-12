@@ -11,7 +11,7 @@ class JugadoresModel{
 
 
     public function getJugadoresByCategoria($id_categoria){
-        $sql = $this->db->prepare("SELECT nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
                                    FROM dp_jugador 
                                    INNER JOIN dp_categoria AS cat ON (dp_jugador.id_categoria = cat.id_categoria) 
                                    WHERE dp_jugador.id_categoria = ?");
@@ -22,7 +22,7 @@ class JugadoresModel{
     }
 
     public function getJugadores(){
-        $sql = $this->db->prepare("SELECT nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, cat.nombre 
                                    FROM dp_jugador 
                                    INNER JOIN dp_categoria AS cat ON (dp_jugador.id_categoria = cat.id_categoria)");
         $sql->execute();
