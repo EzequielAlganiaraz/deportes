@@ -3,41 +3,40 @@
 require_once 'libs/Smarty.class.php';
 
 class JugadoresView{
+    private $smarty;
 
-    function __construct(){}
+    function __construct(){
+        $this->smarty = new Smarty();}
 
-    public function showJugadoresCategoria($jugadores_categoria){
-
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('titulo','Jugadores');
-        $smarty->assign('lista_jugadores_categoria', $jugadores_categoria);
-        $smarty->display('templates/jugadores_categoria.tpl');
+    public function showJugadores($jugadores){
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('titulo','Jugadores');
+        $this->smarty->assign('lista_jugadores', $jugadores);
+        $this->smarty->display('templates/jugadores.tpl');
     }
     public function showAllJugadores($AllJugadores){
-
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('titulo','Jugadores');
-        $smarty->assign('lista_jugadores', $AllJugadores);
-        $smarty->display('templates/jugadores.tpl');
+        
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('titulo','Jugadores');
+        $this->smarty->assign('lista_jugadores', $AllJugadores);
+        $this->smarty->display('templates/jugadores.tpl');
     }
     public function showJugadoresAbm($jugadores,$categorias){
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('titulo','Jugadores');
-        $smarty->assign('lista_jugadores', $jugadores);
-        $smarty->assign('lista_categorias', $categorias);
-        $smarty->display('templates/jugadores_abm.tpl');
+        
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('titulo','Jugadores');
+        $this->smarty->assign('lista_jugadores', $jugadores);
+        $this->smarty->assign('lista_categorias', $categorias);
+        $this->smarty->display('templates/jugadores_abm.tpl');
     }
 
     public function showUpdateJugador($jugador, $categorias){
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('titulo','Jugadores');
-        $smarty->assign('jugador', $jugador);
-        $smarty->assign('lista_categorias', $categorias);
-        $smarty->display('templates/jugador_actualizar.tpl');
+        
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('titulo','Jugadores');
+        $this->smarty->assign('jugador', $jugador);
+        $this->smarty->assign('lista_categorias', $categorias);
+        $this->smarty->display('templates/jugador_actualizar.tpl');
     }
 
 

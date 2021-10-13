@@ -18,11 +18,11 @@ class JugadoresController {
 
     function getJugadoresCategoria($categoria){
         $jugadores = $this->model->getJugadoresByCategoria($categoria);
-        $this->view->showJugadoresCategoria($jugadores);
+        $this->view->showJugadores($jugadores);
     }
     function getAllJugadores(){
         $AllJugadores = $this->model->getJugadores();
-        $this->view->showAllJugadores($AllJugadores);
+        $this->view->showJugadores($AllJugadores);
     }
     function getJugadoresAbm($categorias){
         $this->helper->checkLoggedIn();
