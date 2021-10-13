@@ -39,6 +39,10 @@ class UsuarioController {
             }
         }
     }
+    function showHome(){
+        $this->usuarioHelper->checkLoggedIn();
+        $this->view->showHome();
+    }
 
     function logout() {
         $this->usuarioHelper->logout();

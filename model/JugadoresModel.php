@@ -56,6 +56,12 @@ class JugadoresModel{
         $sql->execute([$nombreCompleto, $edad, $altura, $domicilio, $categoria, $id]);
 
     }
+    public function searchJugador($id_categoria){
+        $sql= $this->db->prepare('SELECT * FROM dp_jugador WHERE id_categoria=?');
+        $sql->execute([$id_categoria]);
+        $jugadores=$sql->fetchAll(PDO::FETCH_OBJ);
+        return $jugadores;
+    }
 
 
 }

@@ -13,6 +13,12 @@
             <body>
                 
                 <nav>
-                    <h1>Tudai</h1>
-                    <a href="logout">Logout</a>
+                    <ul>
+                        <li><a href="homeUsuario">Tudai</a></li>
+                        <li><img src="./image/logo.png" alt="Logo"></li>
+                        <li><a href="logout">Logout</a></li>
+                    </ul>
+                    
+                    
+                    
                 </nav>

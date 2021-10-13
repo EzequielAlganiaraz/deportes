@@ -18,11 +18,11 @@ class JugadoresController {
 
     function getJugadoresCategoria($categoria){
         $jugadores = $this->model->getJugadoresByCategoria($categoria);
-        $this->view->showJugadoresCategoria($jugadores);
+        $this->view->showJugadores($jugadores);
     }
     function getAllJugadores(){
         $AllJugadores = $this->model->getJugadores();
-        $this->view->showAllJugadores($AllJugadores);
+        $this->view->showJugadores($AllJugadores);
     }
     function getJugadoresAbm($categorias){
         $this->helper->checkLoggedIn();
@@ -64,6 +64,11 @@ class JugadoresController {
 
         $this->model->updateJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria, $id);
         header("Location: " . BASE_URL . 'jugadoresAbm');
+    }
+    function searchJugadores($id_categoria){
+        $this->helper->checkLoggedIn();
+        $jugador=$this->model->searchJugador($id_categoria);
+        return $jugador;
     }
 
 }
