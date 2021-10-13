@@ -65,6 +65,11 @@ class JugadoresController {
         $this->model->updateJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria, $id);
         header("Location: " . BASE_URL . 'jugadoresAbm');
     }
+    function searchJugadores($id_categoria){
+        $this->helper->checkLoggedIn();
+        $jugador=$this->model->searchJugador($id_categoria);
+        return $jugador;
+    }
 
 }
 

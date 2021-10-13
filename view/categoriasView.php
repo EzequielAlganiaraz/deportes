@@ -14,7 +14,7 @@ class CategoriasView{
         $smarty->assign('list_categorias', $categorias);
         $smarty->display('templates/categorias.tpl');
     }
-    public function showCategoriasAbm($categorias){
+    public function showCategoriasAbm($categorias,){
         $smarty = new Smarty();
         $smarty->assign('BASE_URL', BASE_URL);
         $smarty->assign('titulo','Categorias');

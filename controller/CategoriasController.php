@@ -31,7 +31,7 @@ class CategoriasController {
         $this->view->showCategoriasAbm($categorias);
     }
     function deleteCategoria($id) {
-        $this->helper->checkLoggedIn();
+        $this->helper->checkLoggedIn();           
         $this->model->deleteCategoria($id);
         header('Location:' . BASE_URL . 'categoriasAbm');
     }
