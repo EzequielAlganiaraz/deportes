@@ -7,7 +7,6 @@ require_once "controller/UsuarioController.php";
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
 
-
 $action = $_GET["action"];
 
 $invitadoController = new InvitadoController();
@@ -34,7 +33,11 @@ if($action == ''){
         }elseif($partesURL[0] == "iniciarSesion") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->doLogin();
+        } else if($partesURL[0] == "homeUsuario"){
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->showHome();
         }elseif($partesURL[0] == "jugadoresAbm") {
+
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadoresAbm($categorias);
         }elseif($partesURL[0] == "borrarJugador") {
@@ -46,12 +49,15 @@ if($action == ''){
             $jugadoresController->getJugadorById($partesURL[1],$categorias);
         }elseif($partesURL[0] == "updateJugador") {
             $jugadoresController->updateJugador($partesURL[1]);
-        }
-        
-        elseif($partesURL[0] == "categoriasAbm") {
+        }elseif($partesURL[0] == "categoriasAbm") {
            $categoriasController->getCategoriaAbm();
         }elseif($partesURL[0] == "borrarCategoria") {
-            $categoriasController->deleteCategoria($partesURL[1]);
+            $jugador= $jugadoresController->searchJugadores($partesURL[1]);
+            if(empty($jugador)){
+                $categoriasController->deleteCategoria($partesURL[1]);
+            } else{
+                header('Location:' . BASE_URL . 'categoriasAbm');                
+            }
         }elseif($partesURL[0] == "agregarCategoria") {
             $categoriasController->insertCategoria();
         }elseif($partesURL[0] == "actualizarCategoria") {

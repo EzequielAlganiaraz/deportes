@@ -8,7 +8,7 @@
                 <p>{$categoria->descripcion}</p>
                  <div class="acciones">
                     <a id="actualizar" href="actualizarCategoria/{$categoria->id_categoria}">Actualizar</a>
-                    <a id="borrar" href="borrarCategoria/{$categoria->id_categoria}">Borrar</a>
+                    <a id="borrar" href="borrarCategoria/{$categoria->id_categoria}">Borrar</a>                    
                 </div>
             </div>
 
