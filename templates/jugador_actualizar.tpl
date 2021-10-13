@@ -4,6 +4,8 @@
             <h2>Actualizar Jugador</h2>
             <label for="nombreCompleto">Nombre completo</label>
             <input type="text" name="nombreCompleto" placeholder="Nombre y apellido" value="{$jugador->nombre_apellido}">
+            <label for="dni">Documento de identidad</label>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos" value={$jugador->dni}>
             <label for="edad">Edad</label>
             <input type="number" name="edad" placeholder="Edad" value={$jugador->edad}>
             <label for="altura">Altura (cm)</label>

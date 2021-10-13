@@ -52,12 +52,8 @@ if($action == ''){
         }elseif($partesURL[0] == "categoriasAbm") {
            $categoriasController->getCategoriaAbm();
         }elseif($partesURL[0] == "borrarCategoria") {
-            $jugador= $jugadoresController->searchJugadores($partesURL[1]);
-            if(empty($jugador)){
-                $categoriasController->deleteCategoria($partesURL[1]);
-            } else{
-                header('Location:' . BASE_URL . 'categoriasAbm');                
-            }
+            $jugadores= $jugadoresController->searchJugadores($partesURL[1]);
+            $categoriasController->deleteCategoria($partesURL[1], $jugadores);
         }elseif($partesURL[0] == "agregarCategoria") {
             $categoriasController->insertCategoria();
         }elseif($partesURL[0] == "actualizarCategoria") {

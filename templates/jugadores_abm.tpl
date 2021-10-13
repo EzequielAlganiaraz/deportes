@@ -4,6 +4,7 @@
             
             <div class="card-container">
                 <h2>{$jugador->nombre_apellido}</h2>
+                <h3>DNI: {$jugador->dni}</h3>
                 <h3>Edad: {$jugador->edad}</h3>
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
@@ -21,6 +22,8 @@
             <h2>Agregar Jugador</h2>
             <label for="nombreCompleto">Nombre completo</label>
             <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
+            <label for="dni">Documento de identidad</label>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos" value={$jugador->dni}>
             <label for="edad">Edad</label>
             <input type="number" name="edad" placeholder="Edad">
             <label for="altura">Altura (cm)</label>
