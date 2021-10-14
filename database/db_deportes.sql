@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2021 a las 21:23:00
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 14-10-2021 a las 00:20:17
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,6 +51,7 @@ INSERT INTO `dp_categoria` (`id_categoria`, `nombre`, `descripcion`, `tipo_compe
 
 CREATE TABLE `dp_jugador` (
   `id_deportista` int(11) NOT NULL,
+  `dni` int(9) NOT NULL,
   `nombre_apellido` varchar(60) NOT NULL,
   `edad` int(2) NOT NULL,
   `altura` int(3) NOT NULL,

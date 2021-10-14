@@ -203,3 +203,17 @@ select {
 nav img {
     width: 35%;
 }
+
+.msj-error {
+    align-content: center;
+    justify-content: center;
+}
+
+.msj-error h3 {
+    color: #f95151;
+    border: 1px solid rgba(236, 31, 31, 0.973);
+    margin: auto;
+    /*padding: 0.5em;*/
+    text-align: center;
+    width: 30%;
+}

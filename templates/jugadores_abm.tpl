@@ -4,6 +4,7 @@
             
             <div class="card-container">
                 <h2>{$jugador->nombre_apellido}</h2>
+                <h3>DNI: {$jugador->dni}</h3>
                 <h3>Edad: {$jugador->edad}</h3>
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
@@ -16,11 +17,15 @@
 
         {/foreach}
     </div>
+
+
     <div class="form-container">
         <form class="form-am" method="post" action="agregarJugador">
             <h2>Agregar Jugador</h2>
             <label for="nombreCompleto">Nombre completo</label>
             <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
+            <label for="dni">Documento de identidad</label>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos" value={$jugador->dni}>
             <label for="edad">Edad</label>
             <input type="number" name="edad" placeholder="Edad">
             <label for="altura">Altura (cm)</label>
@@ -33,6 +38,11 @@
                     <option value={$categoria->id_categoria}>{$categoria->nombre}</option>
                  {/foreach}
             </select>
+            {if $error}
+                <div class="msj-error">
+                    <h3> {$error} </h3>
+                </div>
+            {/if}
             <input class="submit" type="submit" value="Agregar">
         </form>
     

@@ -15,6 +15,11 @@
         {/foreach}
 
     </div>
+    {if $error}
+        <div class="msj-error">
+            <h3> {$error} </h3>
+        </div>
+    {/if}
     <div class="form-container">
         <form class="form-am" method="post" action="agregarCategoria">
             <h2>Agregar Categoria</h2>

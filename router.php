@@ -37,13 +37,13 @@ if($action == ''){
             $UsuarioController = new UsuarioController();
             $UsuarioController->showHome();
         }elseif($partesURL[0] == "jugadoresAbm") {
-
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadoresAbm($categorias);
         }elseif($partesURL[0] == "borrarJugador") {
             $jugadoresController->deleteJugador($partesURL[1]);
         }elseif($partesURL[0] == "agregarJugador") {
-            $jugadoresController->insertJugador();
+            $categorias= $categoriasController->getCategorias();
+            $jugadoresController->insertJugador($categorias);
         }elseif($partesURL[0] == "actualizarJugador") {
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadorById($partesURL[1],$categorias);
@@ -52,12 +52,8 @@ if($action == ''){
         }elseif($partesURL[0] == "categoriasAbm") {
            $categoriasController->getCategoriaAbm();
         }elseif($partesURL[0] == "borrarCategoria") {
-            $jugador= $jugadoresController->searchJugadores($partesURL[1]);
-            if(empty($jugador)){
-                $categoriasController->deleteCategoria($partesURL[1]);
-            } else{
-                header('Location:' . BASE_URL . 'categoriasAbm');                
-            }
+            $jugadores= $jugadoresController->searchJugadores($partesURL[1]);
+            $categoriasController->deleteCategoria($partesURL[1], $jugadores);
         }elseif($partesURL[0] == "agregarCategoria") {
             $categoriasController->insertCategoria();
         }elseif($partesURL[0] == "actualizarCategoria") {

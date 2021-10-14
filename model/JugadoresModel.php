@@ -11,7 +11,7 @@ class JugadoresModel{
 
 
     public function getJugadoresByCategoria($id_categoria){
-        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista,dni, nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
                                    FROM dp_jugador 
                                    INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria) 
                                    WHERE dp_jugador.id_categoria = ?");
@@ -22,7 +22,7 @@ class JugadoresModel{
     }
 
     public function getJugadores(){
-        $sql = $this->db->prepare("SELECT id_deportista,nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista, dni, nombre_apellido, edad, altura, domicilio, dp_jugador.id_categoria, dp_categoria.nombre 
                                    FROM dp_jugador 
                                    INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria)");
         $sql->execute();
@@ -36,11 +36,20 @@ class JugadoresModel{
         $sql->execute([$id]);
     }
 
-    public function insertJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria){
-        $sql = $this->db->prepare('INSERT INTO dp_jugador(nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?, ?, ?,?,?)');
-        $sql->execute([$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+    public function insertJugador($nombreCompleto, $dni, $edad, $altura, $domicilio, $categoria){
+        $this->db->beginTransaction();
+        
+        $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
+        $consulta->execute([$dni]);
+        $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
+        if($jugadorByDni!=$dni){
+            $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
+            $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+            return $this->db->lastInsertId();
+        }
 
-        return $this->db->lastInsertId();
+        $this->db->commit();
+        
 
     }
     public function getJugadorById($id){
@@ -51,9 +60,9 @@ class JugadoresModel{
         return $jugador;
     }
 
-    public function updateJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria, $id){
-        $sql = $this->db->prepare('UPDATE dp_jugador SET nombre_apellido = ?,edad = ?, altura = ?, domicilio = ?, id_categoria = ? WHERE id_deportista = ?');
-        $sql->execute([$nombreCompleto, $edad, $altura, $domicilio, $categoria, $id]);
+    public function updateJugador($nombreCompleto, $dni, $edad, $altura, $domicilio, $categoria, $id){
+        $sql = $this->db->prepare('UPDATE dp_jugador SET dni= ?, nombre_apellido = ?,edad = ?, altura = ?, domicilio = ?, id_categoria = ? WHERE id_deportista = ?');
+        $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria, $id]);
 
     }
     public function searchJugador($id_categoria){
@@ -62,7 +71,6 @@ class JugadoresModel{
         $jugadores=$sql->fetchAll(PDO::FETCH_OBJ);
         return $jugadores;
     }
-
 
 }
 
