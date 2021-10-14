@@ -37,10 +37,19 @@ class JugadoresModel{
     }
 
     public function insertJugador($nombreCompleto, $dni, $edad, $altura, $domicilio, $categoria){
-        $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
-        $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+        $this->db->beginTransaction();
+        
+        $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
+        $consulta->execute([$dni]);
+        $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
+        if($jugadorByDni!=$dni){
+            $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
+            $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+            return $this->db->lastInsertId();
+        }
 
-        return $this->db->lastInsertId();
+        $this->db->commit();
+        
 
     }
     public function getJugadorById($id){
@@ -61,12 +70,6 @@ class JugadoresModel{
         $sql->execute([$id_categoria]);
         $jugadores=$sql->fetchAll(PDO::FETCH_OBJ);
         return $jugadores;
-    }
-    public function searchJugadorByDni($dni){
-        $sql= $this->db->prepare('SELECT * FROM dp_jugador WHERE dni=?');
-        $sql->execute([$dni]);
-        $jugadoresByDni=$sql->fetchAll(PDO::FETCH_OBJ);
-        return $jugadoresByDni;
     }
 
 }

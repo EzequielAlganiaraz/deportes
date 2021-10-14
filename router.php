@@ -37,13 +37,13 @@ if($action == ''){
             $UsuarioController = new UsuarioController();
             $UsuarioController->showHome();
         }elseif($partesURL[0] == "jugadoresAbm") {
-
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadoresAbm($categorias);
         }elseif($partesURL[0] == "borrarJugador") {
             $jugadoresController->deleteJugador($partesURL[1]);
         }elseif($partesURL[0] == "agregarJugador") {
-            $jugadoresController->insertJugador();
+            $categorias= $categoriasController->getCategorias();
+            $jugadoresController->insertJugador($categorias);
         }elseif($partesURL[0] == "actualizarJugador") {
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadorById($partesURL[1],$categorias);

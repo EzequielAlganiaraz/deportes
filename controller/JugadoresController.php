@@ -36,16 +36,24 @@ class JugadoresController {
         header('Location:' . BASE_URL . 'jugadoresAbm');
     }
 
-    function insertJugador(){
+    function insertJugador($categorias){
         $this->helper->checkLoggedIn();
         $nombreCompleto = $_REQUEST['nombreCompleto'];
+        $dni = intVal($_REQUEST['dni']);
         $edad = intVal($_REQUEST['edad']);
         $altura = intVal($_REQUEST['altura']);
         $domicilio = $_REQUEST['domicilio'];
         $categoria = intVal($_REQUEST['categoria']);
 
-        $this->model->insertJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria);
-        header("Location: " . BASE_URL . 'jugadoresAbm');
+        $lastId=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
+        
+        if(empty($lastId)){
+            $jugadores=$this->model->getJugadores();
+            $this->view->showJugadoresAbm($jugadores,$categorias, "El deportista ya fue agregado");
+        }else{
+            header("Location: " . BASE_URL . 'jugadoresAbm');
+        }
+        
     }
 
     function getJugadorById($id, $categorias){

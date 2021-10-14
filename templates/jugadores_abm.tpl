@@ -17,6 +17,8 @@
 
         {/foreach}
     </div>
+
+
     <div class="form-container">
         <form class="form-am" method="post" action="agregarJugador">
             <h2>Agregar Jugador</h2>
@@ -36,6 +38,11 @@
                     <option value={$categoria->id_categoria}>{$categoria->nombre}</option>
                  {/foreach}
             </select>
+            {if $error}
+                <div class="msj-error">
+                    <h3> {$error} </h3>
+                </div>
+            {/if}
             <input class="submit" type="submit" value="Agregar">
         </form>
     

@@ -34,6 +34,7 @@ class CategoriasController {
         $this->helper->checkLoggedIn();  
         if(empty($jugadores)){
             $this->model->deleteCategoria($id);
+            header("Location: " . BASE_URL . 'categoriasAbm');
         }else{
             $categorias=$this->model->getCategorias();
             $this->view->showCategoriasAbm($categorias,"No se puede borrar");
