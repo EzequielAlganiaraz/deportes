@@ -51,7 +51,8 @@ class JugadoresController {
             $jugadores=$this->model->getJugadores();
             $this->view->showJugadoresAbm($jugadores,$categorias, "El deportista ya fue agregado");
         }else{
-            header("Location: " . BASE_URL . 'jugadoresAbm');
+            $jugadores=$this->model->getJugadores();
+            $this->view->showJugadoresAbm($jugadores,$categorias, "El deportista ya fue agregado");
         }
         
     }
