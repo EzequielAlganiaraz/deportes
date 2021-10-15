@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_deportes`
 --
-CREATE DATABASE `db_deportes`;
+CREATE DATABASE IF NOT EXISTS `db_deportes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_deportes`;
 
 -- --------------------------------------------------------
 
