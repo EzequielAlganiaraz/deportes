@@ -1,4 +1,11 @@
 {include file="header.tpl"}
+    {if $error}
+        <div class="error-container">
+            <div class="msj-error">
+                <h3> {$error} </h3>
+            </div>
+        </div>
+    {/if}
     <div class="container">
         <form class="form-login" action="iniciarSesion" method="post">
             <label for="username">Username</label>
@@ -10,3 +17,4 @@
     </div>
     </body>
 </html>
+{include file="footer.tpl"}

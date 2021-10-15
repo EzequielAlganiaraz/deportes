@@ -37,23 +37,30 @@ class JugadoresModel{
     }
 
     public function insertJugador($nombreCompleto, $dni, $edad, $altura, $domicilio, $categoria){
-        $this->db->beginTransaction();
+        try{
+            $this->db->beginTransaction();
         
-        $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
-        $consulta->execute([$dni]);
-        $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
-        if($jugadorByDni!=$dni){
-            $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
-            $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
-            $this->db->commit();
-            $insert=true;
+            $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
+            $consulta->execute([$dni]);
+            $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
+            if($jugadorByDni!=$dni){
+                $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
+                $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+                $this->db->commit();
+                $insert=true;
+                
+                return $insert;
+            }else{
+                $insert=false;
             
-            return $insert;
-        }else{
-            $insert=false;
-            
-            return $insert;
+                return $insert;
+            }
+        }catch(PDOException  $ex){ 
+            $db->rollBack(); 
+            log($ex->getMessage());
         }
+
+        
 
         
         

@@ -4,6 +4,8 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
+
+
 nav {
     background-color: #1b1b1b;
     display: flex;
@@ -185,19 +187,19 @@ nav a:hover {
 select {
     margin-bottom: 1em;
     height: 3em;
-    color: #9ef520;
+    color: #20eef5;
     background-color: #1b1b1b;
-    border: 1px solid #9ef520;
+    border: 1px solid #20eef5;
 }
 
 .form-am label {
-    color: #9ef520;
+    color: #20eef5;
     margin-bottom: .5em;
 }
 
 .form-am h2 {
     text-align: center;
-    color: #7cf520;
+    color: #20eef5;
 }
 
 nav img {
@@ -213,7 +215,9 @@ nav img {
     color: #f95151;
     border: 1px solid rgba(236, 31, 31, 0.973);
     margin: auto;
-    /*padding: 0.5em;*/
+    padding: 0.5em;
     text-align: center;
-    width: 30%;
+    width: 55%;
+    margin-top: 1em;
+    background-color: #222222;
 }

@@ -6,11 +6,12 @@ class UsuarioView{
 
     function __construct(){}
 
-    public function showLogin(){
+    public function showLogin($error = null){
 
         $smarty = new Smarty();
         $smarty->assign('BASE_URL', BASE_URL);
         $smarty->assign('titulo','Login');
+        $smarty->assign('error',$error);
         $smarty->display('templates/login.tpl');
     }
 

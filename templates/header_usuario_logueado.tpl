@@ -22,3 +22,4 @@
                     
                     
                 </nav>
+{include file="footer.tpl"}

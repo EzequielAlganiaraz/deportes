@@ -52,7 +52,7 @@ class JugadoresController {
             $this->view->showJugadoresAbm($jugadores,$categorias);
         }else{
             $jugadores=$this->model->getJugadores();
-            $this->view->showJugadoresAbm($jugadores,$categorias, "El deportista ya fue agregado");
+            $this->view->showJugadoresAbm($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
         }
         
     }
