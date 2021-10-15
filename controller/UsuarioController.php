@@ -34,7 +34,7 @@ class UsuarioController {
                 $this->usuarioHelper->login($user);
                 $this->view->showHome();
             } else {
-                $this->view->showLogin();
+                $this->view->showLogin("Error en login: Verifique que el usuario y la contraseña sean correctos");
                 
             }
         }

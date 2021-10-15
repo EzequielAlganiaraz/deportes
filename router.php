@@ -60,8 +60,7 @@ if($action == ''){
             $categoriasController->getCategoriaById($partesURL[1],);
         }elseif($partesURL[0] == "updateCategoria") {
             $categoriasController->updateCategoria($partesURL[1]);
-        }        
-        elseif($partesURL[0] == "logout") {
+        }elseif($partesURL[0] == "logout") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->logout();
         }

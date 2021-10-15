@@ -37,7 +37,7 @@ class CategoriasController {
             header("Location: " . BASE_URL . 'categoriasAbm');
         }else{
             $categorias=$this->model->getCategorias();
-            $this->view->showCategoriasAbm($categorias,"No se puede borrar");
+            $this->view->showCategoriasAbm($categorias,"Esta categoria no se puede eliminar");
         }
     }
     function insertCategoria(){

@@ -11,7 +11,7 @@ class JugadoresModel{
 
 
     public function getJugadoresByCategoria($id_categoria){
-        $sql = $this->db->prepare("SELECT id_deportista,dni, nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
+        $sql = $this->db->prepare("SELECT id_deportista, dni, nombre_apellido,edad,altura,domicilio,dp_jugador.id_categoria, dp_categoria.nombre 
                                    FROM dp_jugador 
                                    INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria) 
                                    WHERE dp_jugador.id_categoria = ?");
@@ -37,18 +37,32 @@ class JugadoresModel{
     }
 
     public function insertJugador($nombreCompleto, $dni, $edad, $altura, $domicilio, $categoria){
-        $this->db->beginTransaction();
+        try{
+            $this->db->beginTransaction();
         
-        $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
-        $consulta->execute([$dni]);
-        $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
-        if($jugadorByDni!=$dni){
-            $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
-            $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
-            return $this->db->lastInsertId();
+            $consulta= $this->db->prepare('SELECT dni FROM dp_jugador WHERE dni=?');
+            $consulta->execute([$dni]);
+            $jugadorByDni=$consulta->fetch(PDO::FETCH_COLUMN);
+            if($jugadorByDni!=$dni){
+                $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?,?, ?, ?,?,?)');
+                $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+                $this->db->commit();
+                $insert=true;
+                
+                return $insert;
+            }else{
+                $insert=false;
+            
+                return $insert;
+            }
+        }catch(PDOException  $ex){ 
+            $db->rollBack(); 
+            log($ex->getMessage());
         }
 
-        $this->db->commit();
+        
+
+        
         
 
     }

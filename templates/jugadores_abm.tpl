@@ -1,4 +1,13 @@
 {include file="header_usuario_logueado.tpl"}
+    
+    {if $error}
+        <div class="error-container">
+            <div class="msj-error">
+                <h3> {$error} </h3>
+            </div>
+        </div>
+    {/if}
+    
     <div class="container-categoria">
         {foreach from=$lista_jugadores item=jugador}
             
@@ -25,7 +34,7 @@
             <label for="nombreCompleto">Nombre completo</label>
             <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
             <label for="dni">Documento de identidad</label>
-            <input type="number" name="dni" placeholder="Número de DNI sin puntos" value={$jugador->dni}>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos">
             <label for="edad">Edad</label>
             <input type="number" name="edad" placeholder="Edad">
             <label for="altura">Altura (cm)</label>
@@ -38,12 +47,8 @@
                     <option value={$categoria->id_categoria}>{$categoria->nombre}</option>
                  {/foreach}
             </select>
-            {if $error}
-                <div class="msj-error">
-                    <h3> {$error} </h3>
-                </div>
-            {/if}
             <input class="submit" type="submit" value="Agregar">
         </form>
     
     </div>
+{include file="footer.tpl"}

@@ -45,14 +45,14 @@ class JugadoresController {
         $domicilio = $_REQUEST['domicilio'];
         $categoria = intVal($_REQUEST['categoria']);
 
-        $lastId=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
-        
-        if(empty($lastId)){
-            $jugadores=$this->model->getJugadores();
-            $this->view->showJugadoresAbm($jugadores,$categorias, "El deportista ya fue agregado");
-        }else{
+
+        $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
+        if($insert==true){
             $jugadores=$this->model->getJugadores();
             $this->view->showJugadoresAbm($jugadores,$categorias);
+        }else{
+            $jugadores=$this->model->getJugadores();
+            $this->view->showJugadoresAbm($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
         }
         
     }
@@ -66,12 +66,13 @@ class JugadoresController {
     function updateJugador($id){
         $this->helper->checkLoggedIn();
         $nombreCompleto = $_REQUEST['nombreCompleto'];
+        $dni= $_REQUEST['dni'];
         $edad = intVal($_REQUEST['edad']);
         $altura = intVal($_REQUEST['altura']);
         $domicilio = $_REQUEST['domicilio'];
         $categoria = intVal($_REQUEST['categoria']);
 
-        $this->model->updateJugador($nombreCompleto, $edad, $altura, $domicilio, $categoria, $id);
+        $this->model->updateJugador($nombreCompleto, $dni,$edad, $altura, $domicilio, $categoria, $id);
         header("Location: " . BASE_URL . 'jugadoresAbm');
     }
     function searchJugadores($id_categoria){

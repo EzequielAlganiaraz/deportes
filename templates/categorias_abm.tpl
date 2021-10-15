@@ -1,4 +1,11 @@
 {include file="header_usuario_logueado.tpl"}
+    {if $error}
+        <div class="error-container">
+            <div class="msj-error">
+                <h3> {$error} </h3>
+            </div>
+        </div>
+    {/if}
     <div class="container-categoria">
         {foreach from=$list_categorias item=categoria}
             
@@ -15,11 +22,7 @@
         {/foreach}
 
     </div>
-    {if $error}
-        <div class="msj-error">
-            <h3> {$error} </h3>
-        </div>
-    {/if}
+    
     <div class="form-container">
         <form class="form-am" method="post" action="agregarCategoria">
             <h2>Agregar Categoria</h2>
@@ -36,3 +39,4 @@
         </form>
     
     </div>
+{include file="footer.tpl"}
