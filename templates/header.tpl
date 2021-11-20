@@ -16,7 +16,13 @@
                     <ul>
                         <li> <a href="">Tudai</a> </li>
                         <li> <img src="./image/logo.png" alt="Logo"> </li>
-                        <li> <a href="login">Login</a> </li>
+                        {if isset($smarty.session.ID)}
+                        <li><a href="logout">Logout</a></li>
+                        
+                        {else}
+                        <li> <a href="login">Login</a> </li><li>
+                        {/if}
+
                     </ul>
                 </nav>
                 

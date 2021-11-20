@@ -5,7 +5,7 @@ require_once "controller/JugadoresController.php";
 require_once "controller/UsuarioController.php";
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-
+define ("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
 
 $action = $_GET["action"];
 
@@ -16,7 +16,8 @@ $jugadoresController = new JugadoresController();
 $params = explode('/',$action);
 
 if($action == ''){
-    $invitadoController->showHomeInvitado();
+        $UsuarioController = new UsuarioController();
+        $UsuarioController->showLogin();
 }else{
     if (isset($action)){
         $partesURL = explode("/", $action);

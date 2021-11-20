@@ -27,6 +27,7 @@ class UsuarioController {
             $username = $_POST['username'];
             $password = $_POST['password'];
             
+            
             $user = $this->model->getUser($username);
             $hashPswd = md5($password);
             if ($user && ($hashPswd == $user->password)) {
@@ -38,15 +39,17 @@ class UsuarioController {
                 
             }
         }
+        else{
+            $this->view->showLogin("Error en login: Verifique que haya completado todos los campos");
+        }
     }
     function showHome(){
         $this->usuarioHelper->checkLoggedIn();
         $this->view->showHome();
     }
 
-    function logout() {
+    function logout() {        
         $this->usuarioHelper->logout();
-        $this->view->showHome();
     }
 
 }
