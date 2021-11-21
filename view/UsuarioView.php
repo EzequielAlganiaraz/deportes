@@ -23,6 +23,13 @@ class UsuarioView{
         $smarty->assign('titulo','Home');
         $smarty->display('templates/home_usuario.tpl');
     }
+    public function showUsuarios($users){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL', BASE_URL);
+        $smarty->assign('titulo','Usuarios');
+        $smarty->assign('users', $users);
+        $smarty->display('templates/usuarios.tpl');
+    }
 
 }
 

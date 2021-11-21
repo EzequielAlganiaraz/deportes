@@ -11,6 +11,7 @@ class UsuarioHelper {
     public function login($user) {
         $_SESSION['ID'] = $user->id_usuario;
         $_SESSION['USERNAME'] = $user->username;
+        $_SESSION['ROLE']= $user->role;
     }
 
     public function checkLoggedIn() {
@@ -18,10 +19,15 @@ class UsuarioHelper {
             header("Location: " . BASE_URL . 'login');
             die();
         }
+        else {
+            $user= $_SESSION['ID'];
+            return $user;
+        }
     }
 
     function logout() {
+        session_start();
         session_destroy();
-        header("Location: " . BASE_URL . 'login');
+        header("Location: " . LOGIN);
     } 
 }

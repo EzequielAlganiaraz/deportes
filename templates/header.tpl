@@ -14,9 +14,19 @@
                 
                 <nav>
                     <ul>
-                        <li> <a href="">Tudai</a> </li>
+                        <li> <a href="home">Tudai</a> </li>
                         <li> <img src="./image/logo.png" alt="Logo"> </li>
+                        {if isset($smarty.session.ID)}
+                            {if $smarty.session.ROLE =="administrador"}
+                                <li> <a href="showUsuarios">Usuarios</a> </li>
+                            {/if}
+                            <li><a href="logout">Logout</a></li>
+                            
+                        {else}
                         <li> <a href="login">Login</a> </li>
+                        {/if}
+                        
+
                     </ul>
                 </nav>
                 

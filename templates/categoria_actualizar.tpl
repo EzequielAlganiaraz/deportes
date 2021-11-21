@@ -1,4 +1,4 @@
-{include file="header_usuario_logueado.tpl"}
+{include file="header.tpl"}
 <div class="form-container">
         <form class="form-am" method="post" action="updateCategoria/{$categoria->id_categoria}">
             <h2>Actualizar Categoria</h2>

@@ -1,4 +1,4 @@
-{include file="header_usuario_logueado.tpl"}
+{include file="header.tpl"}
 <div class="form-container">
         <form class="form-am" method="post" action="updateJugador/{$jugador->id_deportista}">
             <h2>Actualizar Jugador</h2>
