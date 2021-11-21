@@ -24,10 +24,10 @@ class JugadoresController {
         $AllJugadores = $this->model->getJugadores();
         $this->view->showJugadores($AllJugadores);
     }
-    function getJugadoresAbm($categorias){
+    function getJugadores($categorias){
         $this->helper->checkLoggedIn();
         $jugadores = $this->model->getJugadores();
-        $this->view->showJugadoresAbm($jugadores,$categorias);
+        $this->view->showJugadores($jugadores,$categorias);
     }
 
     function deleteJugador($id) {
@@ -49,10 +49,10 @@ class JugadoresController {
         $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
         if($insert==true){
             $jugadores=$this->model->getJugadores();
-            $this->view->showJugadoresAbm($jugadores,$categorias);
+            $this->view->showJugadores($jugadores,$categorias);
         }else{
             $jugadores=$this->model->getJugadores();
-            $this->view->showJugadoresAbm($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
+            $this->view->showJugadores($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
         }
         
     }

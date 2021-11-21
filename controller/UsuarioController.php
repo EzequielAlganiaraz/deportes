@@ -1,7 +1,7 @@
 <?php 
 require_once "./view/UsuarioView.php";
 require_once "./model/UsuarioModel.php";
-require_once "./helpers/UsuarioHelper.php";
+require_once "./helpers/usuarioHelper.php";
 
 
 

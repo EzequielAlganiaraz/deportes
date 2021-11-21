@@ -14,21 +14,14 @@ class CategoriasController {
         $this->model = new CategoriasModel();
         $this->helper = new UsuarioHelper();
     }
-
-
-    function getCategorias(){
-        $categorias = $this->model->getCategorias();
-        return $categorias;
-    }
-
     function showCategorias(){
         $categorias = $this->model->getCategorias();
         $this->view->showCategorias($categorias);
     }
-    function getCategoriaAbm(){
+    function getCategorias(){
         $this->helper->checkLoggedIn();
         $categorias = $this->model->getCategorias();
-        $this->view->showCategoriasAbm($categorias);
+        $this->view->showCategorias($categorias);
     }
     function deleteCategoria($id, $jugadores) {
         $this->helper->checkLoggedIn();  
@@ -37,7 +30,7 @@ class CategoriasController {
             header("Location: " . BASE_URL . 'categoriasAbm');
         }else{
             $categorias=$this->model->getCategorias();
-            $this->view->showCategoriasAbm($categorias,"Esta categoria no se puede eliminar");
+            $this->view->showCategorias($categorias,"Esta categoria no se puede eliminar");
         }
     }
     function insertCategoria(){

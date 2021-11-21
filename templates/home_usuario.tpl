@@ -1,14 +1,16 @@
-{include file="header_usuario_logueado.tpl"}
+{include file="header.tpl"}
     <div class="container">
        <div class="seleccion">
-            <a href="categoriasAbm"> 
+            <a href="categorias"> 
                 <h1>Categorias</h1>
             </a>
        </div>
        <div class="seleccion">
-            <a href="jugadoresAbm">
+            <a href="jugadores">
                 <h1>Jugadores</h1>  
             </a>
        </div>
+      
     </div>
+    <script src="js/app.js"></script>
 {include file="footer.tpl"}
