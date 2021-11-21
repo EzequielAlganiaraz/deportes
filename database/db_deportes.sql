@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2021 a las 13:36:34
+-- Tiempo de generación: 21-11-2021 a las 17:53:32
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `db_deportes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_deportes`;
 
 --
 -- Estructura de tabla para la tabla `dp_categoria`
