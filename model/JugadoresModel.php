@@ -56,7 +56,7 @@ class JugadoresModel{
                 return $insert;
             }
         }catch(PDOException  $ex){ 
-            $db->rollBack(); 
+            $this->db->rollBack(); 
             log($ex->getMessage());
         }
 

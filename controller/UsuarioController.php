@@ -47,7 +47,40 @@ class UsuarioController {
         $this->usuarioHelper->checkLoggedIn();
         $this->view->showHome();
     }
+    function showUsuarios(){
+        $this->usuarioHelper->checkLoggedIn();
+        var_dump($_SESSION['ROLE']);
+        $rol=$_SESSION['ROLE'];
+        if($rol=="administrador"){           
+            $users=$this->model->getAllbyRole("usuario");
+            $this->view->showUsuarios($users);
+        }else{
+            header('Location:' . BASE_URL . 'home');
+        }
+    }
+    function getUser(){
+        $this->usuarioHelper->checkLoggedIn();
+        $user= $this->model->getUserbyID($_SESSION['ID']);
+        return $user;
+    }
+    function deleteUsuario($id){
+        $this->usuarioHelper->checkLoggedIn();
+        if($_SESSION['ROLE']="administrador"){
+            $this->model->deleteUsuario($id);
+            header('Location:' . BASE_URL . 'showUsuarios');
+        }        
+    }
+    function actualizarPermisos($id){        
+        $this->usuarioHelper->checkLoggedIn();
+        $agregarJugadores= $_REQUEST['AgregarJugadores'];
+        $borrarJugadores= $_REQUEST['BorrarJugadores'];
+        $actualizarJugadores = $_REQUEST['ActualizarJugadores'];
+        $comentarJugadores = $_REQUEST['ComentarJugadores'];
+       
 
+        $this->model->updateUsuario( $id, $agregarJugadores,$borrarJugadores,$actualizarJugadores,$comentarJugadores);
+        header("Location: " . BASE_URL . 'showUsuarios');
+    }
     function logout() {        
         $this->usuarioHelper->logout();
     }

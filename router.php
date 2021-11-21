@@ -32,21 +32,32 @@ if($action == ''){
             $UsuarioController->showHome();
         }
         elseif($partesURL[0] == "jugadores") {
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
             $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadores($categorias);
+            $jugadoresController->getJugadores($categorias, $user);
+            
         }elseif($partesURL[0] == "borrarJugador") {
-            $jugadoresController->deleteJugador($partesURL[1]);
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
+            $jugadoresController->deleteJugador($partesURL[1],$user);
         }elseif($partesURL[0] == "agregarJugador") {
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
             $categorias= $categoriasController->getCategorias();
-            $jugadoresController->insertJugador($categorias);
+            $jugadoresController->insertJugador($categorias,$user);
         }elseif($partesURL[0] == "actualizarJugador") {
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
             $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadorById($partesURL[1],$categorias);
+            $jugadoresController->getJugadorById($partesURL[1],$categorias,$user);
         }elseif($partesURL[0] == "updateJugador") {
-            $jugadoresController->updateJugador($partesURL[1]);
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
+            $jugadoresController->updateJugador($partesURL[1],$user);
         }
         elseif($partesURL[0] == "categorias") {
-           $categoriasController->getCategorias();
+           $categoriasController->showCategorias();
         }elseif($partesURL[0] == "borrarCategoria") {
             $jugadores= $jugadoresController->searchJugadores($partesURL[1]);
             $categoriasController->deleteCategoria($partesURL[1], $jugadores);
@@ -57,7 +68,16 @@ if($action == ''){
         }elseif($partesURL[0] == "updateCategoria") {
             $categoriasController->updateCategoria($partesURL[1]);
         }
-        
+        elseif($partesURL[0] == "showUsuarios"){ 
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->showUsuarios();
+        }elseif($partesURL[0] == "borrarUsuario") {
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->deleteUsuario($partesURL[1]);
+        }elseif($partesURL[0] == "actualizarPermisos"){
+            $UsuarioController = new UsuarioController();            
+            $UsuarioController->actualizarPermisos($partesURL[1]);
+        }
         elseif($partesURL[0] == "logout") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->logout();
