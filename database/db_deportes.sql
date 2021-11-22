@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2021 a las 00:20:17
+-- Tiempo de generación: 21-11-2021 a las 17:53:32
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `db_deportes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_deportes`;
 
 --
 -- Estructura de tabla para la tabla `dp_categoria`
@@ -68,15 +70,17 @@ CREATE TABLE `dp_jugador` (
 CREATE TABLE `dp_usuario` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(11) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `role` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `dp_usuario`
 --
 
-INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`) VALUES
-(1, 'ezequiel', 'bac527f21be5d2591c6e2f3cf51c98fb');
+INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
+(1, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 'usuario'),
+(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -121,7 +125,7 @@ ALTER TABLE `dp_jugador`
 -- AUTO_INCREMENT de la tabla `dp_usuario`
 --
 ALTER TABLE `dp_usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

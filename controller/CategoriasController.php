@@ -14,30 +14,23 @@ class CategoriasController {
         $this->model = new CategoriasModel();
         $this->helper = new UsuarioHelper();
     }
-
-
-    function getCategorias(){
-        $categorias = $this->model->getCategorias();
-        return $categorias;
-    }
-
     function showCategorias(){
         $categorias = $this->model->getCategorias();
         $this->view->showCategorias($categorias);
     }
-    function getCategoriaAbm(){
+    function getCategorias(){
         $this->helper->checkLoggedIn();
-        $categorias = $this->model->getCategorias();
-        $this->view->showCategoriasAbm($categorias);
+        $categorias= $this->model->getCategorias();
+        return $categorias;
     }
     function deleteCategoria($id, $jugadores) {
         $this->helper->checkLoggedIn();  
         if(empty($jugadores)){
             $this->model->deleteCategoria($id);
-            header("Location: " . BASE_URL . 'categoriasAbm');
+            header("Location: " . BASE_URL . 'categorias');
         }else{
             $categorias=$this->model->getCategorias();
-            $this->view->showCategoriasAbm($categorias,"Esta categoria no se puede eliminar");
+            $this->view->showCategorias($categorias,"Esta categoria no se puede eliminar");
         }
     }
     function insertCategoria(){
@@ -47,7 +40,7 @@ class CategoriasController {
         $tipo_competencia = $_REQUEST['tipo_competencia'];
 
         $this->model->insertCategoria($nombreDeporte,$descripcion,$tipo_competencia);
-        header("Location: " . BASE_URL . 'categoriasAbm');
+        header("Location: " . BASE_URL . 'categorias');
     }
     function getCategoriaById($id){
         $this->helper->checkLoggedIn();
@@ -62,7 +55,7 @@ class CategoriasController {
         $tipo_competencia = $_REQUEST['tipo_competencia'];
 
         $this->model->updateCategoria($nombreDeporte,$descripcion,$tipo_competencia,$id);
-        header("Location: " . BASE_URL . 'categoriasAbm');
+        header("Location: " . BASE_URL . 'categorias');
     }
 }
 
