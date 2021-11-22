@@ -29,18 +29,11 @@ class UsuarioController {
     function doLogin(){
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = $_POST['username'];
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $password = $_POST['password'];
             
             
             $user = $this->model->getUser($username);
-            $pswToVerify = $user->password;
-            if(password_verify($password, $pswToVerify)){
-                echo("hello");
-            }else{
-                echo("chau");
-            }
-            if ($user) {
-                 
+            if ($user && password_verify($password, ($user->password))) {
                 $this->usuarioHelper->login($user);
                 $this->view->showHome();
             } else {
