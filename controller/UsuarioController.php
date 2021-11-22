@@ -49,9 +49,8 @@ class UsuarioController {
     }
     function showUsuarios(){
         $this->usuarioHelper->checkLoggedIn();
-        $rol=$_SESSION['ROLE'];
-        if($rol=="administrador"){           
-            $users=$this->model->getAllbyRole("usuario");
+        if($_SESSION['ADMINISTRADOR']==1){           
+            $users=$this->model->getAll();
             $this->view->showUsuarios($users);
         }else{
             header('Location:' . BASE_URL . 'home');
@@ -64,21 +63,31 @@ class UsuarioController {
     }
     function deleteUsuario($id){
         $this->usuarioHelper->checkLoggedIn();
-        if($_SESSION['ROLE']="administrador"){
+        if($_SESSION['ADMINISTRADOR']==1){
             $this->model->deleteUsuario($id);
             header('Location:' . BASE_URL . 'showUsuarios');
+        }else{
+            header('Location:' . BASE_URL . 'home');
         }        
+    }
+    function showPermisos($id){
+        $this->usuarioHelper->checkLoggedIn();
+        if($_SESSION['ADMINISTRADOR']==1){
+            $user=$this->model->getUserbyID($id);
+            $this->view->showPermisosUser($user);
+        }else{
+            header('Location:' . BASE_URL . 'home');
+        }
     }
     function actualizarPermisos($id){        
         $this->usuarioHelper->checkLoggedIn();
-        $agregarJugadores= $_REQUEST['AgregarJugadores'];
-        $borrarJugadores= $_REQUEST['BorrarJugadores'];
-        $actualizarJugadores = $_REQUEST['ActualizarJugadores'];
-        $comentarJugadores = $_REQUEST['ComentarJugadores'];
-       
-
-        $this->model->updateUsuario( $id, $agregarJugadores,$borrarJugadores,$actualizarJugadores,$comentarJugadores);
-        header("Location: " . BASE_URL . 'showUsuarios');
+        if($_SESSION['ADMINISTRADOR']==1){
+            $permiso= $_REQUEST['permisos'];
+            $this->model->updateUsuario($permiso, $id);
+            header('Location:' . BASE_URL . 'showUsuarios');
+        }else{
+            header('Location:' . BASE_URL . 'home');
+        }
     }
     function logout() {        
         $this->usuarioHelper->logout();

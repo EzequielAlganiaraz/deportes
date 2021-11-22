@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2021 a las 17:53:32
+-- Tiempo de generación: 22-11-2021 a las 20:02:48
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -24,7 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 CREATE DATABASE IF NOT EXISTS `db_deportes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `db_deportes`;
-
 --
 -- Estructura de tabla para la tabla `dp_categoria`
 --
@@ -61,6 +60,21 @@ CREATE TABLE `dp_jugador` (
   `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `dp_jugador`
+--
+
+INSERT INTO `dp_jugador` (`id_deportista`, `dni`, `nombre_apellido`, `edad`, `altura`, `domicilio`, `id_categoria`) VALUES
+(14, 34567854, 'Lucio Castro', 34, 134, 'Sarmiento 3562', 2),
+(16, 2147483647, 'Luciano Castro', 34, 156, 'calle 58 4563', 1),
+(17, 34567876, 'Santiago Gomez', 21, 157, 'San Martin 2453', 1),
+(18, 32456321, 'Santiago Gomez', 22, 153, 'calle 58 4563', 2),
+(19, 23456765, 'Delfina Cataño', 23, 161, 'Sarmiento 3562', 3),
+(20, 32453234, 'Ludmila Sanchez', 23, 160, 'calle 58 1765', 3),
+(21, 25145298, 'Karen Rodriguez', 24, 159, 'Necochea 2425', 3),
+(22, 41526365, 'Mariano Gallo', 24, 167, 'Saavedra 2425', 2),
+(23, 23456432, 'Luciano Castro', 34, 167, 'Sarmiento 3562', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -71,16 +85,17 @@ CREATE TABLE `dp_usuario` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(11) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `role` varchar(30) NOT NULL
+  `administrador` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `dp_usuario`
 --
 
-INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
-(1, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 'usuario'),
-(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 'administrador');
+INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `administrador`) VALUES
+(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 1),
+(4, 'agustina', '4d186321c1a7f0f354b297e8914ab240 ', 0),
+(7, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 0);
 
 --
 -- Índices para tablas volcadas
@@ -113,19 +128,19 @@ ALTER TABLE `dp_usuario`
 -- AUTO_INCREMENT de la tabla `dp_categoria`
 --
 ALTER TABLE `dp_categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dp_jugador`
 --
 ALTER TABLE `dp_jugador`
-  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `dp_usuario`
 --
 ALTER TABLE `dp_usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

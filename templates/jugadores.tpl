@@ -39,20 +39,18 @@
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
                 <h3>Categoria: {$jugador->nombre}</h3>
-                <div class="acciones">
-                    {if $actualizarJugadores ==1}
+                {if $smarty.session.ADMINISTRADOR ==1}
+                    <div class="acciones">
                         <a id="actualizar" href="actualizarJugador/{$jugador->id_deportista}">Actualizar</a>
-                    {/if}
-                    {if $borrarJugadores ==1}
-                    <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
-                    {/if}
-                </div>
+                        <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
+                    </div>
+                {/if}
             </div>
 
         {/foreach}
     </div>
 
-    {if $agregarJugadores ==1}
+    {if $smarty.session.ADMINISTRADOR ==1}
         <div class="form-container">
             <form class="form-am" method="post" action="agregarJugador">
                 <h2>Agregar Jugador</h2>

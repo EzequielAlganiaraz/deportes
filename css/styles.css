@@ -219,3 +219,24 @@ nav img {
     margin-top: 1em;
     background-color: #222222;
 }
+
+.tabla-usuarios {
+    border-collapse: collapse;
+    width: 60%;
+    justify-content: center;
+    color: white;
+    font-size: x-large;
+}
+
+.tabla-usuarios td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tabla-usuarios thead tr {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0f9b9bd0;
+    font-weight: bolder;
+}
