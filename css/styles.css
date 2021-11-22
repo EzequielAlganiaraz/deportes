@@ -112,7 +112,7 @@ nav a:hover {
     flex-direction: column;
     justify-content: space-around;
     width: 20em;
-    height: 11em;
+    height: 13em;
     padding: 1em;
     background-color: #1b1b1b;
     border: 1px solid #20eef5;
@@ -143,6 +143,14 @@ nav a:hover {
     display: flex;
     justify-content: space-around;
     width: 18em;
+}
+
+.form-login a {
+    font-size: .8em;
+    color: #1ccdf5;
+    border: 1px solid;
+    padding: 0.5em;
+    text-decoration: none;
 }
 
 #actualizar {

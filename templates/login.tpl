@@ -13,6 +13,9 @@
             <label for="username">Password</label>
             <input type="password" name="password" placeholder="Password">
             <input class="submit" type="submit" value="Login">
+            <div>
+                <a href="showRegistro">Registrarse</a>
+            </div>
         </form>
     </div>
     </body>

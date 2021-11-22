@@ -17,6 +17,12 @@ class UsuarioModel{
 
         return $user;
     }
+
+    public function saveUser($username, $password){
+        $sql = $this->db->prepare("INSERT INTO dp_usuario(username,password,role) VALUES (?,?,?)");
+        $sql->execute([$username, $password, "usuario"]);
+        return $this->db->lastInsertId();
+    }
     public function getAll(){
         $sql = $this->db->prepare("SELECT * FROM dp_usuario");
         $sql->execute();
