@@ -233,10 +233,14 @@ nav img {
     padding: 8px;
 }
 
+.tabla-usuarios tbody td {
+    background-color: rgba(16, 102, 93, 0.466);
+}
+
 .tabla-usuarios thead tr {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #0f9b9bd0;
+    background-color: #0b808fb6;
     font-weight: bolder;
 }

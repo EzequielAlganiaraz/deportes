@@ -49,7 +49,7 @@ class UsuarioController {
     }
     function showUsuarios(){
         $this->usuarioHelper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){           
+        if($_SESSION['ROLE']=='administrador'){           
             $users=$this->model->getAll();
             $this->view->showUsuarios($users);
         }else{
@@ -63,7 +63,7 @@ class UsuarioController {
     }
     function deleteUsuario($id){
         $this->usuarioHelper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $this->model->deleteUsuario($id);
             header('Location:' . BASE_URL . 'showUsuarios');
         }else{
@@ -72,7 +72,7 @@ class UsuarioController {
     }
     function showPermisos($id){
         $this->usuarioHelper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $user=$this->model->getUserbyID($id);
             $this->view->showPermisosUser($user);
         }else{
@@ -81,7 +81,7 @@ class UsuarioController {
     }
     function actualizarPermisos($id){        
         $this->usuarioHelper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $permiso= $_REQUEST['permisos'];
             $this->model->updateUsuario($permiso, $id);
             header('Location:' . BASE_URL . 'showUsuarios');

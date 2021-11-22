@@ -24,7 +24,7 @@ class JugadoresController {
 
     function deleteJugador($id) {
         $this->helper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
              $this->model->deleteJugador($id);
             header('Location:' . BASE_URL . 'jugadores');
         }else{
@@ -36,7 +36,7 @@ class JugadoresController {
 
     function insertJugador($categorias){
         $this->helper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $nombreCompleto = $_REQUEST['nombreCompleto'];
             $dni = intVal($_REQUEST['dni']);
             $edad = intVal($_REQUEST['edad']);
@@ -61,7 +61,7 @@ class JugadoresController {
 
     function getJugadorById($id, $categorias){
         $this->helper->checkLoggedIn();        
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $jugador = $this->model->getJugadorById($id);
             $this->view->showUpdateJugador($jugador, $categorias);
         }else{
@@ -72,7 +72,7 @@ class JugadoresController {
 
     function updateJugador($id){
         $this->helper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $nombreCompleto = $_REQUEST['nombreCompleto'];
             $dni= $_REQUEST['dni'];
             $edad = intVal($_REQUEST['edad']);
@@ -107,7 +107,7 @@ class JugadoresController {
         }
         if ($atributos="deporte"){
             $jugadores= $this->model->searchJugadorByCategoria($search);
-            $this->view->showJugadores($jugadores,$search,$user);
+            $this->view->showJugadores($jugadores,$search);
         }
         if ($atributos="dni"){
 

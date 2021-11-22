@@ -25,7 +25,7 @@ class CategoriasController {
     }
     function deleteCategoria($id, $jugadores) {
         $this->helper->checkLoggedIn();  
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             if(empty($jugadores)){
                 $this->model->deleteCategoria($id);
                 header("Location: " . BASE_URL . 'categorias');
@@ -39,7 +39,7 @@ class CategoriasController {
     }
     function insertCategoria(){
         $this->helper->checkLoggedIn();
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $nombreDeporte = $_REQUEST['nombreDeporte'];
             $descripcion = $_REQUEST['descripcion'];        
             $tipo_competencia = $_REQUEST['tipo_competencia'];
@@ -56,7 +56,7 @@ class CategoriasController {
         $this->view->showUpdateCategoria($categoria);
     }
     function updateCategoria($id){
-        if($_SESSION['ADMINISTRADOR']==1){
+        if($_SESSION['ROLE']=='administrador'){
             $this->helper->checkLoggedIn();
             $this->view->showUpdateCategoria($id);
             $nombreDeporte = $_REQUEST['nombreDeporte'];

@@ -13,7 +13,7 @@
                 <h2>{$categoria->nombre}</h2>
                 <h3>Tipo de competencia: {$categoria->tipo_competencia}</h3>
                 <p>{$categoria->descripcion}</p>
-                {if $smarty.session.ADMINISTRADOR}
+                {if $smarty.session.ROLE =="administrador"}
                     <div class="acciones">
                         <a id="actualizar" href="actualizarCategoria/{$categoria->id_categoria}">Actualizar</a>
                         <a id="borrar" href="borrarCategoria/{$categoria->id_categoria}">Borrar</a>                    
@@ -24,7 +24,7 @@
         {/foreach}
 
     </div>
-    {if $smarty.session.ADMINISTRADOR}
+    {if $smarty.session.ROLE =="administrador"}
     <div class="form-container">
         <form class="form-am" method="post" action="agregarCategoria">
             <h2>Agregar Categoria</h2>

@@ -41,8 +41,7 @@ if($action == ''){
         }elseif($partesURL[0] == "agregarJugador") {
             $categorias= $categoriasController->getCategorias();
             $jugadoresController->insertJugador($categorias);
-        }elseif($partesURL[0] == "actualizarJugador") {
-            var_dump($_SESSION);
+        }elseif($partesURL[0] == "actualizarJugador") {            
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadorById($partesURL[1],$categorias);
         }elseif($partesURL[0] == "updateJugador") {

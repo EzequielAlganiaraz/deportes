@@ -39,7 +39,7 @@
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
                 <h3>Categoria: {$jugador->nombre}</h3>
-                {if $smarty.session.ADMINISTRADOR ==1}
+                {if $smarty.session.ROLE =="administrador"}
                     <div class="acciones">
                         <a id="actualizar" href="actualizarJugador/{$jugador->id_deportista}">Actualizar</a>
                         <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
@@ -50,7 +50,7 @@
         {/foreach}
     </div>
 
-    {if $smarty.session.ADMINISTRADOR ==1}
+    {if $smarty.session.ROLE =="administrador"}
         <div class="form-container">
             <form class="form-am" method="post" action="agregarJugador">
                 <h2>Agregar Jugador</h2>

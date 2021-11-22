@@ -17,7 +17,7 @@
                         <li> <a href="home">Tudai</a> </li>
                         <li> <img src="./image/logo.png" alt="Logo"> </li>
                         {if isset($smarty.session.ID)}
-                            {if $smarty.session.ADMINISTRADOR =="1"}
+                            {if $smarty.session.ROLE =="administrador"}
                                 <li> <a href="showUsuarios">Usuarios</a> </li>
                             {/if}
                             <li><a href="logout">Logout</a></li>

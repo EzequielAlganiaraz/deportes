@@ -36,7 +36,7 @@ class UsuarioModel{
         $sql->execute([$id]);    
     }
     public function updateUsuario($permiso, $id){
-        $sql = $this->db->prepare('UPDATE dp_usuario SET administrador= ? WHERE id_usuario=?');
+        $sql = $this->db->prepare('UPDATE dp_usuario SET role= ? WHERE id_usuario=?');
         $sql->execute([$permiso, $id]);
 
     }

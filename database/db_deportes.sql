@@ -85,17 +85,17 @@ CREATE TABLE `dp_usuario` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(11) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `administrador` tinyint(1) NOT NULL
+  `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `dp_usuario`
 --
 
-INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `administrador`) VALUES
-(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 1),
-(4, 'agustina', '4d186321c1a7f0f354b297e8914ab240 ', 0),
-(7, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 0);
+INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
+(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 'administrador'),
+(4, 'agustina', '4d186321c1a7f0f354b297e8914ab240 ', 'usuario'),
+(7, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 'usuario');
 
 --
 -- Índices para tablas volcadas

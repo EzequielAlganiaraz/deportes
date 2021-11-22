@@ -11,7 +11,7 @@ class UsuarioHelper {
     public function login($user) {       
         $_SESSION['ID'] = $user->id_usuario;
         $_SESSION['USERNAME'] = $user->username;
-        $_SESSION['ADMINISTRADOR']= $user->administrador;
+        $_SESSION['ROLE']= $user->role;
     }
 
     public function checkLoggedIn() {
