@@ -4,8 +4,6 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
-
-
 nav {
     background-color: #1b1b1b;
     display: flex;
@@ -220,4 +218,29 @@ nav img {
     width: 55%;
     margin-top: 1em;
     background-color: #222222;
+}
+
+.tabla-usuarios {
+    border-collapse: collapse;
+    width: 60%;
+    justify-content: center;
+    color: white;
+    font-size: x-large;
+}
+
+.tabla-usuarios td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tabla-usuarios tbody td {
+    background-color: rgba(16, 102, 93, 0.466);
+}
+
+.tabla-usuarios thead tr {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0b808fb6;
+    font-weight: bolder;
 }
