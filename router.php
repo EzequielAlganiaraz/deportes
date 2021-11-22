@@ -24,7 +24,7 @@ if($action == ''){
             $UsuarioController->showLogin();
         }elseif($partesURL[0] == "iniciarSesion") {
             $UsuarioController = new UsuarioController();
-            $UsuarioController->doLogin();
+            $UsuarioController->doLogin();            
         } 
         
         else if($partesURL[0] == "home"){
@@ -32,34 +32,26 @@ if($action == ''){
             $UsuarioController->showHome();
         }
         elseif($partesURL[0] == "jugadores") {
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
             $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadores($categorias, $user);
+            $jugadoresController->getJugadores($categorias);
             
-        }elseif($partesURL[0] == "borrarJugador") {
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
-            $jugadoresController->deleteJugador($partesURL[1],$user);
+        }elseif($partesURL[0] == "borrarJugador") {                  
+            
+            $jugadoresController->deleteJugador($partesURL[1]);
         }elseif($partesURL[0] == "agregarJugador") {
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
             $categorias= $categoriasController->getCategorias();
-            $jugadoresController->insertJugador($categorias,$user);
-        }elseif($partesURL[0] == "actualizarJugador") {
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
+            $jugadoresController->insertJugador($categorias);
+        }elseif($partesURL[0] == "actualizarJugador") {            
             $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadorById($partesURL[1],$categorias,$user);
+            $jugadoresController->getJugadorById($partesURL[1],$categorias);
         }elseif($partesURL[0] == "updateJugador") {
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
-            $jugadoresController->updateJugador($partesURL[1],$user);
+            
+            $jugadoresController->updateJugador($partesURL[1]);
         }
         elseif($partesURL[0] == "categorias") {
            $categoriasController->showCategorias();
         }elseif($partesURL[0] == "borrarCategoria") {
-            $jugadores= $jugadoresController->searchJugadores($partesURL[1]);
+            $jugadores= $jugadoresController->searchJugadoresByCategoria($partesURL[1]);
             $categoriasController->deleteCategoria($partesURL[1], $jugadores);
         }elseif($partesURL[0] == "agregarCategoria") {
             $categoriasController->insertCategoria();
@@ -67,6 +59,10 @@ if($action == ''){
             $categoriasController->getCategoriaById($partesURL[1],);
         }elseif($partesURL[0] == "updateCategoria") {
             $categoriasController->updateCategoria($partesURL[1]);
+        }elseif($partesURL[0] == "filtrarJugadores"){
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
+            $jugadoresController->searchJugadores();
         }
         elseif($partesURL[0] == "showUsuarios"){ 
             $UsuarioController = new UsuarioController();
@@ -74,6 +70,9 @@ if($action == ''){
         }elseif($partesURL[0] == "borrarUsuario") {
             $UsuarioController = new UsuarioController();
             $UsuarioController->deleteUsuario($partesURL[1]);
+        }elseif($partesURL[0] == "permisos"){
+            $UsuarioController = new UsuarioController();            
+            $UsuarioController->showPermisos($partesURL[1]);
         }elseif($partesURL[0] == "actualizarPermisos"){
             $UsuarioController = new UsuarioController();            
             $UsuarioController->actualizarPermisos($partesURL[1]);

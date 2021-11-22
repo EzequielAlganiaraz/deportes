@@ -1,4 +1,26 @@
 {include file="header.tpl"}
+    <div class="form-container" >
+        <form class="form-am" method="post" action="filtrarJugadores">>
+             <h2>Filtrar búsqueda por</h2>
+            <label for="nombreCompleto">Nombre completo</label>
+            <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
+
+            <label for="dni">Documento de identidad</label>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos">
+
+            <label for="edad">Edad</label>
+            <input type="number" name="edad" placeholder="Edad">
+
+            <label for="altura">Altura (cm)</label>
+            <input type="number" name="altura" placeholder="Altura en CM">
+
+            <label for="domicilio">Domicilio</label>
+            <input type="text" name="domicilio" placeholder="Domicilio">
+            
+            <input class="submit" type="submit" value="search">
+        </form>
+    </div>
+
     {if $error}
         <div class="error-container">
             <div class="msj-error">
@@ -17,20 +39,18 @@
                 <h3>Altura: {$jugador->altura} cm</h3>
                 <h3>Domicilio: {$jugador->domicilio}</h3>
                 <h3>Categoria: {$jugador->nombre}</h3>
-                <div class="acciones">
-                    {if $actualizarJugadores ==1}
+                {if $smarty.session.ROLE =="administrador"}
+                    <div class="acciones">
                         <a id="actualizar" href="actualizarJugador/{$jugador->id_deportista}">Actualizar</a>
-                    {/if}
-                    {if $borrarJugadores ==1}
-                    <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
-                    {/if}
-                </div>
+                        <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
+                    </div>
+                {/if}
             </div>
 
         {/foreach}
     </div>
 
-    {if $agregarJugadores ==1}
+    {if $smarty.session.ROLE =="administrador"}
         <div class="form-container">
             <form class="form-am" method="post" action="agregarJugador">
                 <h2>Agregar Jugador</h2>

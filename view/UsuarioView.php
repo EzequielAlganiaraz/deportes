@@ -30,7 +30,13 @@ class UsuarioView{
         $smarty->assign('users', $users);
         $smarty->display('templates/usuarios.tpl');
     }
-
+    public function showPermisosUser($user){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL', BASE_URL);
+        $smarty->assign('titulo','Usuarios');
+        $smarty->assign('user', $user);
+        $smarty->display('templates/usuario_permisoS.tpl');
+    }
 }
 
 ?>
