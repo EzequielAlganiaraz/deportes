@@ -24,9 +24,15 @@ if($action == ''){
             $UsuarioController->showLogin();
         }elseif($partesURL[0] == "iniciarSesion") {
             $UsuarioController = new UsuarioController();
-            $UsuarioController->doLogin();            
+            $UsuarioController->doLogin();
+        }elseif ($partesURL[0] == "showRegistro"){
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->showRegistro();
+        }
+        elseif ($partesURL[0] == "registrarse"){
+            $UsuarioController = new UsuarioController();
+            $UsuarioController->doRegister();
         } 
-        
         else if($partesURL[0] == "home"){
             $UsuarioController = new UsuarioController();
             $UsuarioController->showHome();
