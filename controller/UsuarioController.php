@@ -49,7 +49,6 @@ class UsuarioController {
     }
     function showUsuarios(){
         $this->usuarioHelper->checkLoggedIn();
-        var_dump($_SESSION['ROLE']);
         $rol=$_SESSION['ROLE'];
         if($rol=="administrador"){           
             $users=$this->model->getAllbyRole("usuario");

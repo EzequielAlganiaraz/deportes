@@ -59,7 +59,7 @@ if($action == ''){
         elseif($partesURL[0] == "categorias") {
            $categoriasController->showCategorias();
         }elseif($partesURL[0] == "borrarCategoria") {
-            $jugadores= $jugadoresController->searchJugadores($partesURL[1]);
+            $jugadores= $jugadoresController->searchJugadoresByCategoria($partesURL[1]);
             $categoriasController->deleteCategoria($partesURL[1], $jugadores);
         }elseif($partesURL[0] == "agregarCategoria") {
             $categoriasController->insertCategoria();
@@ -67,6 +67,10 @@ if($action == ''){
             $categoriasController->getCategoriaById($partesURL[1],);
         }elseif($partesURL[0] == "updateCategoria") {
             $categoriasController->updateCategoria($partesURL[1]);
+        }elseif($partesURL[0] == "filtrarJugadores"){
+            $UsuarioController = new UsuarioController();            
+            $user= $UsuarioController->getUser();
+            $jugadoresController->searchJugadores($user);
         }
         elseif($partesURL[0] == "showUsuarios"){ 
             $UsuarioController = new UsuarioController();

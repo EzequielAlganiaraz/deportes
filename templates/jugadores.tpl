@@ -1,4 +1,26 @@
 {include file="header.tpl"}
+    <div class="form-container" >
+        <form class="form-am" method="post" action="filtrarJugadores">>
+             <h2>Filtrar búsqueda por</h2>
+            <label for="nombreCompleto">Nombre completo</label>
+            <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
+
+            <label for="dni">Documento de identidad</label>
+            <input type="number" name="dni" placeholder="Número de DNI sin puntos">
+
+            <label for="edad">Edad</label>
+            <input type="number" name="edad" placeholder="Edad">
+
+            <label for="altura">Altura (cm)</label>
+            <input type="number" name="altura" placeholder="Altura en CM">
+
+            <label for="domicilio">Domicilio</label>
+            <input type="text" name="domicilio" placeholder="Domicilio">
+            
+            <input class="submit" type="submit" value="search">
+        </form>
+    </div>
+
     {if $error}
         <div class="error-container">
             <div class="msj-error">

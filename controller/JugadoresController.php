@@ -88,12 +88,43 @@ class JugadoresController {
 
             $this->model->updateJugador($nombreCompleto, $dni,$edad, $altura, $domicilio, $categoria, $id);
             header("Location: " . BASE_URL . 'jugadores');
+        }else{
+            header('Location:' . BASE_URL . 'jugadores');
         }
     }
-    function searchJugadores($id_categoria){
+    function searchJugadoresByCategoria($id_categoria){
         $this->helper->checkLoggedIn();
-        $jugador=$this->model->searchJugador($id_categoria);
+        $jugador=$this->model->searchJugadorByCategoria($id_categoria);
         return $jugador;
+    }
+    function searchJugadores($user){
+        $this->helper->checkLoggedIn();
+        $atributos = $_REQUEST['atributos'];
+        $search= $_REQUEST['search'];
+        
+        if ($atributos="nombre_apellido"){
+
+        }
+        if ($atributos="edad"){
+
+        }
+        if ($atributos="altura"){
+
+        }
+        if ($atributos="deporte"){
+            $jugadores= $this->model->searchJugadorByCategoria($search);
+            $this->view->showJugadores($jugadores,$search,$user);
+        }
+        if ($atributos="dni"){
+
+        }
+        if ($atributos="domicilio"){
+
+        }
+
+        $this->model->searchJugador($atributos, $search);
+        header("Location: " . BASE_URL . 'jugadores');
+        
     }
 
 }
