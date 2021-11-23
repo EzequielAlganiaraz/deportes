@@ -19,7 +19,12 @@ class UsuarioController {
 
 
     function showLogin(){
-        $this->view->showLogin();
+        if($_SESSION){
+            $this->view->showHome();
+        }else{
+            $this->view->showLogin();
+        }
+        
     }
 
     function doLogin(){
