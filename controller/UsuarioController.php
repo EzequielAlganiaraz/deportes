@@ -27,6 +27,10 @@ class UsuarioController {
         
     }
 
+    function showRegistro(){
+        $this->view->showRegistro();
+    }
+
     function doLogin(){
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = $_POST['username'];
@@ -34,9 +38,7 @@ class UsuarioController {
             
             
             $user = $this->model->getUser($username);
-            $hashPswd = md5($password);
-            if ($user && ($hashPswd == $user->password)) {
-                 
+            if ($user && password_verify($password, ($user->password))) {
                 $this->usuarioHelper->login($user);
                 $this->view->showHome();
             } else {
@@ -48,6 +50,31 @@ class UsuarioController {
             $this->view->showLogin("Error en login: Verifique que haya completado todos los campos");
         }
     }
+
+    function doRegister(){
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            $username = $_POST['username'];
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            
+            
+            $id = $this->model->saveUser($username, $password);
+
+            $user = $this->model->getUserbyID($id);
+            
+            if ($user) {
+                $this->usuarioHelper->login($user);
+                $this->view->showHome();
+            } else {
+                $this->view->showregistro("Error en el registro");
+            }
+        }
+        else{
+            $this->view->showRegistro("Error en registro: Verifique que haya completado todos los campos");
+        }
+    }
+
+
+
     function showHome(){
         $this->usuarioHelper->checkLoggedIn();
         $this->view->showHome();
