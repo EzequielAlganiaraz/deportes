@@ -80,9 +80,17 @@ class JugadoresModel{
         $jugadores=$sql->fetchAll(PDO::FETCH_OBJ);
         return $jugadores;
     }
-    public function searchJugador($dato){
-        $sql= $this->db->prepare('SELECT * FROM dp_jugador WHERE nombre_apellido = ?, altura = ? ');
+    
+    public function searchJugador($string){
+        $sql= $this->db->prepare('SELECT id_deportista, dni, nombre_apellido, edad, altura, domicilio, dp_jugador.id_categoria, dp_categoria.nombre 
+                                FROM dp_jugador                                  
+                                INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria)
+                                WHERE '.$string.' ');
+        $sql->execute();
+        $jugadores=$sql->fetchAll(PDO::FETCH_OBJ);
+        return $jugadores;
     }
+
 }
 
 

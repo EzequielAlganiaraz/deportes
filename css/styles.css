@@ -107,6 +107,10 @@ nav a:hover {
     font-weight: bolder;
 }
 
+.container-search button a {
+    text-decoration: none;
+}
+
 .form-login {
     display: flex;
     flex-direction: column;
@@ -118,7 +122,8 @@ nav a:hover {
     border: 1px solid #20eef5;
 }
 
-.submit:hover {
+.submit:hover,
+.container-search button:hover {
     background-color: #20eef5;
     color: #111111;
 }
@@ -129,7 +134,8 @@ nav a:hover {
     margin-bottom: 2em;
 }
 
-.submit {
+.submit,
+.container-search button {
     background-color: #111111;
     border: 1px solid #20eef5;
     color: #20eef5;
@@ -189,8 +195,14 @@ nav a:hover {
     padding: 1em;
 }
 
+.form-search input {
+    border: 1px solid #20eef5;
+    width: auto;
+}
+
 .form-am input,
-select {
+select,
+.form-search input {
     margin-bottom: 1em;
     height: 3em;
     color: #20eef5;
@@ -198,12 +210,14 @@ select {
     border: 1px solid #20eef5;
 }
 
-.form-am label {
+.form-am label,
+.form-search label {
     color: #20eef5;
     margin-bottom: .5em;
 }
 
-.form-am h2 {
+.form-am h2,
+.form-search h2 {
     text-align: center;
     color: #20eef5;
 }
@@ -251,4 +265,15 @@ nav img {
     text-align: left;
     background-color: #0b808fb6;
     font-weight: bolder;
+}
+
+.container-search {
+    width: 100%;
+    display: row;
+    background-color: #222222;
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 1em;
+    color: #c9c9c9;
+    border: 1px solid #20eef5;
 }

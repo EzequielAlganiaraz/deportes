@@ -84,7 +84,7 @@ INSERT INTO `dp_jugador` (`id_deportista`, `dni`, `nombre_apellido`, `edad`, `al
 CREATE TABLE `dp_usuario` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(11) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(300) NOT NULL,
   `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -93,9 +93,8 @@ CREATE TABLE `dp_usuario` (
 --
 
 INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
-(2, 'Tudai', 'e10adc3949ba59abbe56e057f20f883e', 'administrador'),
-(4, 'agustina', '4d186321c1a7f0f354b297e8914ab240 ', 'usuario'),
-(7, 'ezequiel', 'd7216dec976c1beb88a5b60e749abf07', 'usuario');
+(1, 'Tudai', '$2y$10$83Q2h8R.LrG99/V7cR0u8.Pa9Acp2Hkl3zBYo3omhw13IapvbdByi', 'administrador'),
+(2, 'ezequiel', '$2y$10$oTcZfq1hpP6lDA8R2khVoeqA93sFdhM5wrA3Wyf1BnUkoMcAupCNe', 'usuario');
 
 --
 -- Índices para tablas volcadas
