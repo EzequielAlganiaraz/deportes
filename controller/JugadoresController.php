@@ -15,10 +15,23 @@ class JugadoresController {
         $this->helper = new UsuarioHelper();
     }
 
-    function getJugadores($categorias){
+
+    function getJugadores($categorias,$pagina){
         $this->helper->checkLoggedIn();
-        $jugadores = $this->model->getJugadores();    
-        $this->view->showJugadores($jugadores,$categorias);
+        $cantidad_jugadores= count($this->model->getJugadores());         
+        $jugadoresXpagina=4;
+        $cantidad_paginas= ceil($cantidad_jugadores/$jugadoresXpagina);
+        if($pagina>$cantidad_paginas || $pagina<=0){
+            $pagina=1;
+            $jugadores_pagina = $this->model->getAnyJugadores($jugadoresXpagina,($pagina-1)); 
+            $this->view->showJugadores($jugadores_pagina,$categorias,$pagina);
+        }  else{
+            $jugadores_pagina = $this->model->getAnyJugadores($jugadoresXpagina,($pagina-1)); 
+            $this->view->showJugadores($jugadores_pagina,$categorias,$pagina);
+           
+        }      
+       
+        
     
     }
 
@@ -48,10 +61,10 @@ class JugadoresController {
             $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
             if($insert==true){
                 $jugadores=$this->model->getJugadores();
-                $this->view->showJugadores($jugadores, $categorias);
+                $this->view->showJugadores($jugadores, $categorias, 1 );
             }else{
                 $jugadores=$this->model->getJugadores();
-                $this->view->showJugadores($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
+                $this->view->showJugadores($jugadores,$categorias,"El jugador que desea ingresar ya se encuentra federado");
             }
         }else{
             header('Location:' . BASE_URL . 'jugadores');

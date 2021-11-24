@@ -27,6 +27,22 @@ class JugadoresModel{
                                    INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria)");
         $sql->execute();
         $jugadores = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        return $jugadores;
+    }
+    public function getAnyJugadores($jugadoresXpagina,$pagina){
+        
+        $sql = $this->db->prepare("SELECT id_deportista, dni, nombre_apellido, edad, altura, domicilio, dp_jugador.id_categoria, dp_categoria.nombre 
+                                   FROM dp_jugador 
+                                   INNER JOIN dp_categoria ON (dp_jugador.id_categoria = dp_categoria.id_categoria)
+                                   LIMIT :itemInicial , :jugadoresXpagina ");
+        $itemInicial=($pagina*$jugadoresXpagina);
+        $sql->bindValue(":itemInicial", $itemInicial, PDO::PARAM_INT);
+        $sql->bindValue(":jugadoresXpagina", $jugadoresXpagina, PDO::PARAM_INT);      
+        $sql->execute();
+        
+
+        $jugadores = $sql->fetchAll(PDO::FETCH_OBJ);
 
         return $jugadores;
     }

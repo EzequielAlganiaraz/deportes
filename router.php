@@ -38,11 +38,9 @@ if($action == ''){
             $UsuarioController->showHome();
         }
         elseif($partesURL[0] == "jugadores") {
-            $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadores($categorias);
-            
-        }elseif($partesURL[0] == "borrarJugador") {                  
-            
+            $categorias = $categoriasController->getCategorias();    
+            $jugadoresController->getJugadores($categorias,$partesURL[1]);               
+        }elseif($partesURL[0] == "borrarJugador") {               
             $jugadoresController->deleteJugador($partesURL[1]);
         }elseif($partesURL[0] == "agregarJugador") {
             $categorias= $categoriasController->getCategorias();

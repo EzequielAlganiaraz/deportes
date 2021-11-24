@@ -27,7 +27,7 @@
             </select>
             
             <input class="submit" type="submit" value="Buscar">
-            <button  class="" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
+            <button  class="submit" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
         </form>
     </div>
 
@@ -38,7 +38,18 @@
             </div>
         </div>
     {/if}
-    
+    {if $pagina}
+    <nav class="paginacion">
+        <ul>
+            <li><a href="jugadores/{$pagina-1}">Anterior</a></li>          
+             
+            <li><a href="jugadores/{$pagina+1}">Siguiente</a></li>
+            
+
+        </ul>
+    </nav>
+    {/if}
+
     <div class="container-categoria">
         {foreach from=$lista_jugadores item=jugador}
             
