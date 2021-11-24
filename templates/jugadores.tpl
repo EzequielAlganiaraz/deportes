@@ -20,7 +20,7 @@
 
             <label for="categorias">Deporte</label>
             <select name="categorias" id="select-categorias">
-                    <option select>Seleccione un deporte</option>
+                    <option value="" select>Seleccione un deporte</option>
                     {foreach from=$lista_categorias item=categoria}
                         <option value={$categoria->nombre}>{$categoria->nombre}</option>
                     {/foreach}

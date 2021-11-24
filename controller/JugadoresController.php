@@ -139,7 +139,6 @@ class JugadoresController {
               $busqueda=$busqueda ." AND nombre= '" .$categoria."' ";  
             }
         }
-
         $jugadores=$this->model->searchJugador($busqueda);
         if(!empty($jugadores)){
             $this->view->showJugadores($jugadores, $categorias);

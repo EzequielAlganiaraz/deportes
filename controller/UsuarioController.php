@@ -19,11 +19,11 @@ class UsuarioController {
 
 
     function showLogin(){
-        if($_SESSION){
+        if($_SESSION){            
             $this->view->showHome();
         }else{
             $this->view->showLogin();
-        }
+        }       
         
     }
 
@@ -34,11 +34,11 @@ class UsuarioController {
     function doLogin(){
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = $_POST['username'];
-            $password = $_POST['password'];
-            
-            
+            $clave = $_POST['password'];
+           
             $user = $this->model->getUser($username);
-            if ($user && password_verify($password, ($user->password))) {
+            
+            if ($user && (password_verify($clave, $user->password))) {
                 $this->usuarioHelper->login($user);
                 $this->view->showHome();
             } else {
