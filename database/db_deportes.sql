@@ -93,7 +93,7 @@ CREATE TABLE `dp_usuario` (
 --
 
 INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
-(1, 'Tudai', '$2y$10$83Q2h8R.LrG99/V7cR0u8.Pa9Acp2Hkl3zBYo3omhw13IapvbdByi', 'administrador'),1
+(1, 'Tudai', '$2y$10$83Q2h8R.LrG99/V7cR0u8.Pa9Acp2Hkl3zBYo3omhw13IapvbdByi', 'administrador'),
 (2, 'ezequiel', '$2y$10$oTcZfq1hpP6lDA8R2khVoeqA93sFdhM5wrA3Wyf1BnUkoMcAupCNe', 'usuario');
 
 --
