@@ -6,12 +6,13 @@ class JugadoresView{
 
     function __construct(){}
 
-       public function showJugadores($jugadores,$categorias, $error= null){
+       public function showJugadores($jugadores,$categorias,$pagina = null, $error= null){
         $smarty = new Smarty();
         $smarty->assign('BASE_URL', BASE_URL);
         $smarty->assign('titulo','Jugadores');
         $smarty->assign('lista_jugadores', $jugadores);
-        $smarty->assign('lista_categorias', $categorias);        
+        $smarty->assign('lista_categorias', $categorias);  
+        $smarty->assign('pagina', $pagina);
         $smarty->assign('error', $error);;
         $smarty->display('templates/jugadores.tpl');
     }

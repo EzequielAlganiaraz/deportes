@@ -13,8 +13,14 @@ nav {
     text-align: center;
 }
 
+nav.paginacion {
+    background: none;
+    background-color: #1b1b1b00;
+}
+
 nav ul {
     display: flex;
+    flex-direction: row;
     width: 100%;
     flex-direction: row;
     justify-content: space-evenly;
@@ -130,7 +136,7 @@ nav a:hover {
 }
 
 .submit,
-.container-search button {
+.btn {
     background-color: #111111;
     border: 1px solid #20eef5;
     color: #20eef5;
@@ -326,4 +332,8 @@ nav img {
     color: #c9c9c9;
     border: 1px solid #20eef5;
     flex-direction: column;
+}
+
+.img-jugador {
+    width: 50%;
 }
