@@ -1,4 +1,17 @@
 
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-11-2021 a las 06:20:38
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -88,8 +101,9 @@ CREATE TABLE `dp_usuario` (
 --
 
 INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
-(16, 'pedro', '$2y$10$2oMu5LFAbYUPMZl59KNBVuO1DGt5igWf2AoYsAJhiW2ept5BX59Fi', 'administrador'),
-(17, 'eze', '$2y$10$d6oeWxMzIYYLJW6sXQQK0eGMgYomzaf2CmQwV7LJFnnlJyLhOBCLK', 'usuario');
+(17, 'eze', '$2y$10$d6oeWxMzIYYLJW6sXQQK0eGMgYomzaf2CmQwV7LJFnnlJyLhOBCLK', 'usuario'),
+(18, 'agustina', '$2y$10$bEODdR1wWS37Fi5WE8iuCuA9n5tj1QEWzQE1644Xys3SUcQX7UqRO', 'administrador'),
+(19, 'ezequiel', '$2y$10$PfuBOIrNwq95Fx07daLKG..c04IirctYd5wQfZKePfBM1OOWrk0qm', 'usuario');
 
 --
 -- Índices para tablas volcadas
@@ -147,7 +161,7 @@ ALTER TABLE `dp_jugador`
 -- AUTO_INCREMENT de la tabla `dp_usuario`
 --
 ALTER TABLE `dp_usuario`
-  MODIFY `id_usuario` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_usuario` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas
