@@ -66,9 +66,8 @@ if($action == ''){
         }elseif($partesURL[0] == "updateCategoria") {
             $categoriasController->updateCategoria($partesURL[1]);
         }elseif($partesURL[0] == "filtrarJugadores"){
-            $UsuarioController = new UsuarioController();            
-            $user= $UsuarioController->getUser();
-            $jugadoresController->searchJugadores();
+            $categorias = $categoriasController->getCategorias();
+            $jugadoresController->searchJugadores($categorias);
         }
         elseif($partesURL[0] == "showUsuarios"){ 
             $UsuarioController = new UsuarioController();

@@ -91,35 +91,60 @@ class JugadoresController {
         $jugador=$this->model->searchJugadorByCategoria($id_categoria);
         return $jugador;
     }
-
-    function searchJugadores(){
+    function searchJugadores($categorias){
         $this->helper->checkLoggedIn();
-        $atributos = $_REQUEST['atributos'];
-        $search= $_REQUEST['search'];
-        
-        if ($atributos="nombre_apellido"){
-
+        $busqueda= "";
+        if(!empty($_REQUEST['nombreCompleto'])){
+            $nombreCompleto=$_REQUEST['nombreCompleto'];           
+            $busqueda=" nombre_apellido= '".$nombreCompleto. " '";
+        } 
+        if(!empty($_REQUEST['dni'])){
+            $dni= intVal($_REQUEST['dni']);
+            if(empty($busqueda)){
+                $busqueda= "dni= '".$dni."' ";
+            }else{
+                $busqueda=$busqueda."AND  dni= '".$dni."' ";
+            }
+            
         }
-        if ($atributos="edad"){
-
+        if(!empty($_REQUEST['edad'])){
+            $edad=intVal($_REQUEST['edad']);
+            if(empty($busqueda)){
+                $busqueda= " edad=" .$edad. "  ";
+            }else{
+                $busqueda=$busqueda ." AND edad= " .$edad. "  "; 
+            }
         }
-        if ($atributos="altura"){
-
+        if(!empty($_REQUEST['altura'])){
+            $altura=intVal($_REQUEST['altura']);
+            if(empty($busqueda)){
+                $busqueda="  altura= ".$altura." "; 
+            }else{
+               $busqueda=$busqueda . " AND  altura= ".$altura." "; 
+            }
         }
-        if ($atributos="deporte"){
-            $jugadores= $this->model->searchJugadorByCategoria($search);
-            $this->view->showJugadores($jugadores,$search);
+        if(!empty($_REQUEST['domicilio'])){
+            $domicilio=$_REQUEST['domicilio'];
+            if(empty($busqueda)){
+                $busqueda= "  domicilio= '".$domicilio."'  ";
+            }else{
+                $busqueda= $busqueda ." AND domicilio= '".$domicilio."'  ";
+            }
         }
-        if ($atributos="dni"){
-
+        if(!empty($_REQUEST['categorias'])){
+            $categoria=$_REQUEST['categorias'];
+            if(empty($busqueda)){
+                $busqueda= "nombre= '" .$categoria."' ";
+            }else{
+              $busqueda=$busqueda ." AND nombre= '" .$categoria."' ";  
+            }
         }
-        if ($atributos="domicilio"){
-
+        $jugadores=$this->model->searchJugador($busqueda);
+        if(!empty($jugadores)){
+            $this->view->showJugadores($jugadores, $categorias);
+        }else{
+            $this->view->showJugadores($jugadores, $categorias, "No hay resultados que coincidan con la búsqueda");
         }
-
-        $this->model->searchJugador($atributos, $search);
-        header("Location: " . BASE_URL . 'jugadores');
-        
     }
     
     function showComments($id){
