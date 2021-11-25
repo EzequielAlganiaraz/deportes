@@ -107,10 +107,6 @@ nav a:hover {
     font-weight: bolder;
 }
 
-.container-search button a {
-    text-decoration: none;
-}
-
 .form-login {
     display: flex;
     flex-direction: column;
@@ -122,8 +118,7 @@ nav a:hover {
     border: 1px solid #20eef5;
 }
 
-.submit:hover,
-.container-search button:hover {
+.submit:hover{
     background-color: #20eef5;
     color: #111111;
 }
@@ -194,6 +189,23 @@ nav a:hover {
     background-color: #1b1b1b;
     padding: 1em;
 }
+.form-search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.row label {
+    margin-right: 0.5em;
+}
 
 .form-search input {
     border: 1px solid #20eef5;
@@ -202,13 +214,15 @@ nav a:hover {
 
 .form-am input,
 select,
-.form-search input {
+.form-search input, .form-search button {
     margin-bottom: 1em;
+    margin-right: 2em;
     height: 3em;
     color: #20eef5;
     background-color: #1b1b1b;
     border: 1px solid #20eef5;
 }
+
 
 .form-am label,
 .form-search label {
@@ -220,6 +234,15 @@ select,
 .form-search h2 {
     text-align: center;
     color: #20eef5;
+}
+
+.form-search button a {
+    text-decoration: none;
+    color: #20eef5;
+    height: 100%;
+}
+.form-search button:hover a{
+    color: #000000;
 }
 
 nav img {
@@ -293,12 +316,14 @@ nav img {
     justify-content: space-between;
 }
 .container-search {
-    width: 100%;
-    display: row;
+    width: 75%;
+    display: flex;
     background-color: #222222;
     text-align: center;
     margin-bottom: 1em;
+    margin-left: 10em;
     padding: 1em;
     color: #c9c9c9;
     border: 1px solid #20eef5;
+    flex-direction: column;
 }

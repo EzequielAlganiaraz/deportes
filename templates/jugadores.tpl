@@ -2,32 +2,35 @@
     <div class="container-search">
         <h2>Filtrar búsqueda por</h2>
         <form class="form-search" method="post" action="filtrarJugadores">
-            
-            <label for="nombreCompleto">Nombre completo</label>
-            <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
+            <div class="row">
+                <label for="nombreCompleto">Nombre completo</label>
+                <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
 
-            <label for="dni">Documento de identidad</label>
-            <input type="number" name="dni" placeholder="Número de DNI sin puntos">
+                <label for="dni">Documento de identidad</label>
+                <input type="number" name="dni" placeholder="Número de DNI sin puntos">
 
-            <label for="edad">Edad</label>
-            <input type="number" name="edad" placeholder="Edad">
+                <label for="edad">Edad</label>
+                <input type="number" name="edad" placeholder="Edad">
+            </div>
+            <div class="row">
+                 <label for="altura">Altura (cm)</label>
+                <input type="number" name="altura" placeholder="Altura en CM">
 
-            <label for="altura">Altura (cm)</label>
-            <input type="number" name="altura" placeholder="Altura en CM">
+                <label for="domicilio">Domicilio</label>
+                <input type="text" name="domicilio" placeholder="Domicilio">
 
-            <label for="domicilio">Domicilio</label>
-            <input type="text" name="domicilio" placeholder="Domicilio">
-
-            <label for="categorias">Deporte</label>
-            <select name="categorias" id="select-categorias">
-                    <option value="" select>Seleccione un deporte</option>
-                    {foreach from=$lista_categorias item=categoria}
-                        <option value={$categoria->nombre}>{$categoria->nombre}</option>
-                    {/foreach}
-            </select>
-            
-            <input class="submit" type="submit" value="Buscar">
-            <button  class="" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
+                <label for="categorias">Deporte</label>
+                <select name="categorias" id="select-categorias">
+                        <option value="" select>Seleccione un deporte</option>
+                        {foreach from=$lista_categorias item=categoria}
+                            <option value={$categoria->nombre}>{$categoria->nombre}</option>
+                        {/foreach}
+                </select>
+            </div>
+            <div class="row">
+                <input class="submit" type="submit" value="Buscar">
+                <button  class="submit" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
+            </div>
         </form>
     </div>
 
