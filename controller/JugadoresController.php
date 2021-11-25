@@ -91,6 +91,7 @@ class JugadoresController {
         $jugador=$this->model->searchJugadorByCategoria($id_categoria);
         return $jugador;
     }
+
     function searchJugadores(){
         $this->helper->checkLoggedIn();
         $atributos = $_REQUEST['atributos'];
@@ -119,6 +120,11 @@ class JugadoresController {
         $this->model->searchJugador($atributos, $search);
         header("Location: " . BASE_URL . 'jugadores');
         
+    }
+    
+    function showComments($id){
+        $this->helper->checkLoggedIn();
+        $this->view->showComments($id);
     }
 
 }

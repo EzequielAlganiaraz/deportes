@@ -87,6 +87,9 @@ if($action == ''){
             $UsuarioController = new UsuarioController();
             $UsuarioController->logout();
         }
+        elseif($partesURL[0] == "seeComments"){
+            $jugadoresController->showComments($partesURL[1]);
+        }
 
 
 }

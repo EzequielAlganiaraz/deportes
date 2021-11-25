@@ -252,3 +252,29 @@ nav img {
     background-color: #0b808fb6;
     font-weight: bolder;
 }
+
+#comments{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#comments ul {
+    background: linear-gradient(180deg, #ffffff80, #ffffff4f);
+    width: 44em;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+#comments li {
+    display: flex;
+    width: 80%;
+    border: 1px solid black;
+    background-color: #ebebeb8a;
+    padding: 0.5em;
+    margin-block: 0.5em;
+    justify-content: space-between;
+}

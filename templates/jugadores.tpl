@@ -45,6 +45,9 @@
                         <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
                     </div>
                 {/if}
+                <div class="acciones">
+                    <a id="comments" href="seeComments/{$jugador->id_deportista}">Ver Comentarios</a>
+                </div>
             </div>
 
         {/foreach}
