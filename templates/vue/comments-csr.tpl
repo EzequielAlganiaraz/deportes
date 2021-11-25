@@ -35,7 +35,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input class="submit" v-on:click="addComment" value="Actualizar">
+            <input class="submit" v-on:click="addComment" value="Agregar">
         
         </form>    
     </section>
