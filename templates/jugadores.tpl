@@ -70,7 +70,7 @@
 
         {/foreach}
     </div>
-    {if $pagina}
+    {if empty($pagina)}
     <nav class="paginacion">
         <ul>
             <li><a href="jugadores/{$pagina-1}">Anterior</a></li>          

@@ -112,7 +112,7 @@ class JugadoresController {
             }
             
         } else{
-            var_dump("ESTA ACA");
+            header('Location:' . BASE_URL . 'jugadores/1');
         }
     }
     function searchJugadoresByCategoria($id_categoria){

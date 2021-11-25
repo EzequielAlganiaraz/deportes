@@ -66,6 +66,10 @@ class JugadoresModel{
                     $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria, imagen) VALUES (?,?, ?, ?,?,?,?)');
                     $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria, $pathImg]);
                     $this->db->commit();
+                }else{
+                    $sql = $this->db->prepare('INSERT INTO dp_jugador(dni, nombre_apellido, edad, altura, domicilio, id_categoria) VALUES (?, ?, ?,?,?,?)');
+                    $sql->execute([$dni,$nombreCompleto, $edad, $altura, $domicilio, $categoria]);
+                    $this->db->commit();
                 }
                     $insert=true;
                     
