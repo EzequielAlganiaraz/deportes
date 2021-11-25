@@ -29,7 +29,7 @@
             </div>
             <div class="row">
                 <input class="submit" type="submit" value="Buscar">
-                <button  class="submit" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
+                <button  class="submit" name="showJugadores"><a href="jugadores/1">Mostrar todos</a></button>
             </div>
         </form>
     </div>

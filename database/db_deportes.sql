@@ -1,15 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2021 a las 20:02:48
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -47,6 +35,19 @@ INSERT INTO `dp_categoria` (`id_categoria`, `nombre`, `descripcion`, `tipo_compe
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `dp_comentarios`
+--
+
+CREATE TABLE `dp_comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
+  `puntaje` int(2) NOT NULL,
+  `id_jugador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `dp_jugador`
 --
 
@@ -57,23 +58,17 @@ CREATE TABLE `dp_jugador` (
   `edad` int(2) NOT NULL,
   `altura` int(3) NOT NULL,
   `domicilio` varchar(50) NOT NULL,
-  `id_categoria` int(11) NOT NULL
+  `id_categoria` int(11) NOT NULL,
+  `imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `dp_jugador`
 --
 
-INSERT INTO `dp_jugador` (`id_deportista`, `dni`, `nombre_apellido`, `edad`, `altura`, `domicilio`, `id_categoria`) VALUES
-(14, 34567854, 'Lucio Castro', 34, 134, 'Sarmiento 3562', 2),
-(16, 2147483647, 'Luciano Castro', 34, 156, 'calle 58 4563', 1),
-(17, 34567876, 'Santiago Gomez', 21, 157, 'San Martin 2453', 1),
-(18, 32456321, 'Santiago Gomez', 22, 153, 'calle 58 4563', 2),
-(19, 23456765, 'Delfina Cataño', 23, 161, 'Sarmiento 3562', 3),
-(20, 32453234, 'Ludmila Sanchez', 23, 160, 'calle 58 1765', 3),
-(21, 25145298, 'Karen Rodriguez', 24, 159, 'Necochea 2425', 3),
-(22, 41526365, 'Mariano Gallo', 24, 167, 'Saavedra 2425', 2),
-(23, 23456432, 'Luciano Castro', 34, 167, 'Sarmiento 3562', 1);
+INSERT INTO `dp_jugador` (`id_deportista`, `dni`, `nombre_apellido`, `edad`, `altura`, `domicilio`, `id_categoria`, `imagen`) VALUES
+(13, 6, 'juan gomez', 7, 11, '3444', 1, ''),
+(14, 234234234, 'Martinnnnnn', 33, 23, '3444 errr', 2, 'image/jugadores619f17ad702ea.jpg');
 
 -- --------------------------------------------------------
 
@@ -82,10 +77,10 @@ INSERT INTO `dp_jugador` (`id_deportista`, `dni`, `nombre_apellido`, `edad`, `al
 --
 
 CREATE TABLE `dp_usuario` (
-  `id_usuario` int(11) NOT NULL,
-  `username` varchar(11) NOT NULL,
-  `password` varchar(300) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `id_usuario` int(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `role` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -93,8 +88,8 @@ CREATE TABLE `dp_usuario` (
 --
 
 INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
-(1, 'Tudai', '$2y$10$83Q2h8R.LrG99/V7cR0u8.Pa9Acp2Hkl3zBYo3omhw13IapvbdByi', 'administrador'),
-(2, 'ezequiel', '$2y$10$oTcZfq1hpP6lDA8R2khVoeqA93sFdhM5wrA3Wyf1BnUkoMcAupCNe', 'usuario');
+(16, 'pedro', '$2y$10$2oMu5LFAbYUPMZl59KNBVuO1DGt5igWf2AoYsAJhiW2ept5BX59Fi', 'administrador'),
+(17, 'eze', '$2y$10$d6oeWxMzIYYLJW6sXQQK0eGMgYomzaf2CmQwV7LJFnnlJyLhOBCLK', 'usuario');
 
 --
 -- Índices para tablas volcadas
@@ -105,6 +100,13 @@ INSERT INTO `dp_usuario` (`id_usuario`, `username`, `password`, `role`) VALUES
 --
 ALTER TABLE `dp_categoria`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `dp_comentarios`
+--
+ALTER TABLE `dp_comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `fk_comentario_jugador` (`id_jugador`);
 
 --
 -- Indices de la tabla `dp_jugador`
@@ -127,23 +129,35 @@ ALTER TABLE `dp_usuario`
 -- AUTO_INCREMENT de la tabla `dp_categoria`
 --
 ALTER TABLE `dp_categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `dp_comentarios`
+--
+ALTER TABLE `dp_comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `dp_jugador`
 --
 ALTER TABLE `dp_jugador`
-  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `dp_usuario`
 --
 ALTER TABLE `dp_usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `dp_comentarios`
+--
+ALTER TABLE `dp_comentarios`
+  ADD CONSTRAINT `fk_comentario_jugador` FOREIGN KEY (`id_jugador`) REFERENCES `dp_jugador` (`id_deportista`);
 
 --
 -- Filtros para la tabla `dp_jugador`
