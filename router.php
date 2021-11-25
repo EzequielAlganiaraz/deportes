@@ -38,11 +38,9 @@ if($action == ''){
             $UsuarioController->showHome();
         }
         elseif($partesURL[0] == "jugadores") {
-            $categorias = $categoriasController->getCategorias();
-            $jugadoresController->getJugadores($categorias);
-            
-        }elseif($partesURL[0] == "borrarJugador") {                  
-            
+            $categorias = $categoriasController->getCategorias();    
+            $jugadoresController->getJugadores($categorias,$partesURL[1]);               
+        }elseif($partesURL[0] == "borrarJugador") {               
             $jugadoresController->deleteJugador($partesURL[1]);
         }elseif($partesURL[0] == "agregarJugador") {
             $categorias= $categoriasController->getCategorias();
@@ -50,8 +48,7 @@ if($action == ''){
         }elseif($partesURL[0] == "actualizarJugador") {            
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadorById($partesURL[1],$categorias);
-        }elseif($partesURL[0] == "updateJugador") {
-            
+        }elseif($partesURL[0] == "updateJugador") {            
             $jugadoresController->updateJugador($partesURL[1]);
         }
         elseif($partesURL[0] == "categorias") {
