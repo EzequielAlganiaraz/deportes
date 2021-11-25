@@ -26,5 +26,12 @@ class JugadoresView{
         $smarty->display('templates/jugador_actualizar.tpl');
     }
 
+    public function showComments($id){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL', BASE_URL);
+        $smarty->assign('id', $id);
+        $smarty->display('templates/comments.tpl');
+    }
+
 
 }

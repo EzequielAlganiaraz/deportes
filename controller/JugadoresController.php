@@ -181,4 +181,8 @@ class JugadoresController {
         }            
         
     }
+    function showComments($id){
+        $this->helper->checkLoggedIn();
+        $this->view->showComments($id);
+    }
 }
