@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 <div class="form-container">
-        <form class="form-am" method="post" action="updateJugador/{$jugador->id_deportista}">
+        <form class="form-am" method="post" action="updateJugador/{$jugador->id_deportista}" enctype="multipart/form-data" >
             <h2>Actualizar Jugador</h2>
             <label for="nombreCompleto">Nombre completo</label>
             <input type="text" name="nombreCompleto" placeholder="Nombre y apellido" value="{$jugador->nombre_apellido}">
@@ -18,6 +18,7 @@
                     <option value={$categoria->id_categoria} {if $categoria->id_categoria == $jugador->id_categoria} selected {/if}>{$categoria->nombre}</option>
                  {/foreach}
             </select>
+            <input type="file" name="img_jugador" >
             <input class="submit" type="submit" value="Actualizar">
         </form>
     

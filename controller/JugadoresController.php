@@ -39,9 +39,9 @@ class JugadoresController {
         $this->helper->checkLoggedIn();
         if($_SESSION['ROLE']=='administrador'){
              $this->model->deleteJugador($id);
-            header('Location:' . BASE_URL . 'jugadores');
+            header('Location:' . BASE_URL . 'jugadores/1');
         }else{
-            header('Location:' . BASE_URL . 'jugadores');
+            header('Location:' . BASE_URL . 'jugadores/1');
         }
 
        
@@ -56,18 +56,25 @@ class JugadoresController {
             $altura = intVal($_REQUEST['altura']);
             $domicilio = $_REQUEST['domicilio'];
             $categoria = intVal($_REQUEST['categoria']);
-
-
-            $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
+            $imagen=($_FILES['img_jugador']['tmp_name']);
+           
+            if($_FILES['img_jugador']['type']== "image/jpg" ||  $_FILES['img_jugador']['type'] == "image/jpeg" ||  $_FILES['img_jugador']['type'] == "image/png" ){
+                
+                $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria ,$imagen);
+                 
+            } else{
+                $insert=$this->model->insertJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $categoria);
+            }
+            
             if($insert==true){
                 $jugadores=$this->model->getJugadores();
-                $this->view->showJugadores($jugadores, $categorias, 1 );
+                header('Location:' . BASE_URL . 'jugadores/1');
             }else{
                 $jugadores=$this->model->getJugadores();
-                $this->view->showJugadores($jugadores,$categorias,"El jugador que desea ingresar ya se encuentra federado");
+                $this->view->showJugadores($jugadores,$categorias, "El jugador que desea ingresar ya se encuentra federado");
             }
         }else{
-            header('Location:' . BASE_URL . 'jugadores');
+            header('Location:' . BASE_URL . 'jugadores/1');
         }
         
     }
@@ -77,14 +84,16 @@ class JugadoresController {
         if($_SESSION['ROLE']=='administrador'){
             $jugador = $this->model->getJugadorById($id);
             $this->view->showUpdateJugador($jugador, $categorias);
+            
         }else{
-            header('Location:' . BASE_URL . 'jugadores');
+            header('Location:' . BASE_URL . 'jugadores/1');
         }
 
     }
 
     function updateJugador($id){
         $this->helper->checkLoggedIn();
+
         if($_SESSION['ROLE']=='administrador'){
             $nombreCompleto = $_REQUEST['nombreCompleto'];
             $dni= $_REQUEST['dni'];
@@ -92,11 +101,18 @@ class JugadoresController {
             $altura = intVal($_REQUEST['altura']);
             $domicilio = $_REQUEST['domicilio'];
             $categoria = intVal($_REQUEST['categoria']);
+            $imagen=($_FILES['img_jugador']['tmp_name']);
 
-            $this->model->updateJugador($nombreCompleto, $dni,$edad, $altura, $domicilio, $categoria, $id);
-            header("Location: " . BASE_URL . 'jugadores');
-        }else{
-            header('Location:' . BASE_URL . 'jugadores');
+            if($_FILES['img_jugador']['type']== "image/jpg" ||  $_FILES['img_jugador']['type'] == "image/jpeg" ||  $_FILES['img_jugador']['type'] == "image/png" ){
+                $this->model->updateJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $id, $categoria ,$imagen);
+                header('Location:' . BASE_URL . 'jugadores/1');
+            } else{
+                $this->model->updateJugador($nombreCompleto,$dni , $edad, $altura, $domicilio, $id, $categoria );
+                header('Location:' . BASE_URL . 'jugadores/1');             
+            }
+            
+        } else{
+            var_dump("ESTA ACA");
         }
     }
     function searchJugadoresByCategoria($id_categoria){
@@ -107,6 +123,7 @@ class JugadoresController {
     function searchJugadores($categorias){
         $this->helper->checkLoggedIn();
         $busqueda= "";
+        
         if(!empty($_REQUEST['nombreCompleto'])){
             $nombreCompleto=$_REQUEST['nombreCompleto'];           
             $busqueda=" nombre_apellido= '".$nombreCompleto. " '";
@@ -133,7 +150,7 @@ class JugadoresController {
             if(empty($busqueda)){
                 $busqueda="  altura= ".$altura." "; 
             }else{
-               $busqueda=$busqueda . " AND  altura= ".$altura." "; 
+                $busqueda=$busqueda . " AND  altura= ".$altura." "; 
             }
         }
         if(!empty($_REQUEST['domicilio'])){
@@ -149,18 +166,19 @@ class JugadoresController {
             if(empty($busqueda)){
                 $busqueda= "nombre= '" .$categoria."' ";
             }else{
-              $busqueda=$busqueda ." AND nombre= '" .$categoria."' ";  
+                $busqueda=$busqueda ." AND nombre= '" .$categoria."' ";  
             }
         }
-        $jugadores=$this->model->searchJugador($busqueda);
-        if(!empty($jugadores)){
-            $this->view->showJugadores($jugadores, $categorias);
+        if(empty($busqueda)){
+            header('Location:' . BASE_URL . 'jugadores/1');
         }else{
-            $this->view->showJugadores($jugadores, $categorias, "No hay resultados que coincidan con la búsqueda");
-        }
-    }
+            $jugadores=$this->model->searchJugador($busqueda);
+            if(!empty($jugadores)){
+                $this->view->showJugadores($jugadores, $categorias);
+            }else{
+                $this->view->showJugadores($jugadores, $categorias,"No hay resultados que coincidan con la búsqueda");
+            }
+        }            
         
-
+    }
 }
-
-?>

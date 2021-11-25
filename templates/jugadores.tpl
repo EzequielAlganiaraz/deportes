@@ -27,7 +27,7 @@
             </select>
             
             <input class="submit" type="submit" value="Buscar">
-            <button  class="submit" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
+            <button  class="btn" name="showJugadores"><a href="jugadores">Mostrar todos</a></button>
         </form>
     </div>
 
@@ -38,17 +38,7 @@
             </div>
         </div>
     {/if}
-    {if $pagina}
-    <nav class="paginacion">
-        <ul>
-            <li><a href="jugadores/{$pagina-1}">Anterior</a></li>          
-             
-            <li><a href="jugadores/{$pagina+1}">Siguiente</a></li>
-            
-
-        </ul>
-    </nav>
-    {/if}
+    
 
     <div class="container-categoria">
         {foreach from=$lista_jugadores item=jugador}
@@ -66,14 +56,28 @@
                         <a id="borrar" href="borrarJugador/{$jugador->id_deportista}">Borrar</a>
                     </div>
                 {/if}
+                {if !empty($jugador->imagen)}
+                    <img class="img-jugador" src="{$jugador->imagen}"/>
+                {/if}
+
             </div>
 
         {/foreach}
     </div>
+    {if $pagina}
+    <nav class="paginacion">
+        <ul>
+            <li><a href="jugadores/{$pagina-1}">Anterior</a></li>          
+             
+            <li><a href="jugadores/{$pagina+1}">Siguiente</a></li>
+            
 
+        </ul>
+    </nav>
+    {/if}
     {if $smarty.session.ROLE =="administrador"}
         <div class="form-container">
-            <form class="form-am" method="post" action="agregarJugador">
+            <form class="form-am" method="post" action="agregarJugador" enctype="multipart/form-data" >
                 <h2>Agregar Jugador</h2>
                 <label for="nombreCompleto">Nombre completo</label>
                 <input type="text" name="nombreCompleto" placeholder="Nombre y apellido">
@@ -91,6 +95,7 @@
                         <option value={$categoria->id_categoria}>{$categoria->nombre}</option>
                     {/foreach}
                 </select>
+                <input type="file" name="img_jugador" >
                 <input class="submit" type="submit" value="Agregar">
             </form>
         {/if}

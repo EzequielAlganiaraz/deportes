@@ -48,8 +48,7 @@ if($action == ''){
         }elseif($partesURL[0] == "actualizarJugador") {            
             $categorias = $categoriasController->getCategorias();
             $jugadoresController->getJugadorById($partesURL[1],$categorias);
-        }elseif($partesURL[0] == "updateJugador") {
-            
+        }elseif($partesURL[0] == "updateJugador") {            
             $jugadoresController->updateJugador($partesURL[1]);
         }
         elseif($partesURL[0] == "categorias") {

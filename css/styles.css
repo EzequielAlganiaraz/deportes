@@ -113,7 +113,7 @@ nav a:hover {
     font-weight: bolder;
 }
 
-.container-search button a {
+.btn a {
     text-decoration: none;
 }
 
@@ -129,7 +129,7 @@ nav a:hover {
 }
 
 .submit:hover,
-.container-search button:hover {
+.btn a:hover {
     background-color: #20eef5;
     color: #111111;
 }
@@ -141,7 +141,7 @@ nav a:hover {
 }
 
 .submit,
-.container-search button {
+.btn {
     background-color: #111111;
     border: 1px solid #20eef5;
     color: #20eef5;
@@ -282,4 +282,8 @@ nav img {
     padding: 1em;
     color: #c9c9c9;
     border: 1px solid #20eef5;
+}
+
+.img-jugador {
+    width: 50%;
 }
