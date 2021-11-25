@@ -37,21 +37,5 @@ class ApiComentController {
         else
             $this->view->response("Error al insertar comentario", 500);
 
-    }
-
-
-
-    
-    // public function remove($params = null) {
-    //     $id = $params[':ID'];
-    //     $user = $this->model->getUserbyID($id);
-        
-    //     if ($user) {
-    //         $this->model->deleteUsuario($id);
-    //         $this->view->response("Usuario=$id remove successfuly");
-    //     } else {
-    //         $this->view->response("Usuario =$id not found", 404);
-    //     }
-       
-    // }    
+    }    
 }
